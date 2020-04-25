@@ -2,6 +2,8 @@ HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
+hs_err_pid5475.log
+replay_pid5475.log
 !**/src/main/**
 !**/src/test/**
 
