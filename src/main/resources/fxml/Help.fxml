@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="550.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.HelpController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+</AnchorPane>
+      <Accordion layoutX="14.0" layoutY="60.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+        <panes>
+          <TitledPane fx:id="sales" text="untitled 1">
+            <content>
+                  <TextFlow fx:id="salesText" prefHeight="200.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+          <TitledPane fx:id="products" text="untitled 3">
+               <content>
+                  <TextFlow fx:id="productsText" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+          </TitledPane>
+          <TitledPane fx:id="others" text="untitled 2">
+               <content>
+                  <TextFlow fx:id="othersText" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>

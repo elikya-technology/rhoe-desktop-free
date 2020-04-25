@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.NewSaleController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="60.0" prefHeight="640.0" prefWidth="1200.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <SplitPane fx:id="splitPane" dividerPositions="0.29" prefHeight="360.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <items>
+                  <ScrollPane fitToWidth="true" fitToHeight="true" SplitPane.resizableWithParent="false">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="100.0">
+                           <children>
+                              <JFXTextField fx:id="saleNumber" editable="false" focusTraversable="false" layoutX="15.0" layoutY="24.0" prefHeight="26.0" prefWidth="250.0" promptText="Number" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0" />
+                              <VBox layoutY="60.0" prefWidth="359.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+                                 <children>
+                                    <AnchorPane prefHeight="55.0" prefWidth="355.0">
+                                       <children>
+                                          <Label fx:id="productsLbl" styleClass="header-label" text="Products" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <VBox layoutX="5.0" layoutY="29.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                                             <children>
+                                                <AnchorPane prefHeight="26.0" prefWidth="278.0" styleClass="pane-search">
+                                                   <children>
+                                                      <CustomTextField fx:id="barcodeSearch" prefHeight="26.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <JFXButton fx:id="barcodeBtn" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" styleClass="btn-search" text=" " AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="40.0" />
+                                                   </VBox.margin>
+                                                </AnchorPane>
+                                                <Separator prefWidth="200.0" />
+                                                <AnchorPane prefHeight="26.0" prefWidth="278.0" styleClass="pane-search">
+                                                   <children>
+                                                      <CustomTextField fx:id="searchText" prefHeight="26.0" prefWidth="242.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                                                      <JFXButton fx:id="searchBtn" contentDisplay="CENTER" focusTraversable="false" styleClass="btn-search" text=" " visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <graphic>
+                                                            <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../icons/clear.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </JFXButton>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" right="40.0" />
+                                                   </VBox.margin>
+                                                </AnchorPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <ScrollPane fitToHeight="true" layoutX="15.0" layoutY="130.0" prefHeight="320.0" prefWidth="291.0" vbarPolicy="NEVER" AnchorPane.leftAnchor="15.0" AnchorPane.bottomAnchor="230" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="165.0">
+                                 <content>
+                                    <TableView fx:id="productsTable" prefHeight="310.0" prefWidth="500.0" tableMenuButtonVisible="true">
+                                       <columns>
+                                          <TableColumn fx:id="productName" prefWidth="75.0" text="C1" />
+                                          <TableColumn fx:id="productSerial" prefWidth="75.0" text="Column X" />
+                                          <TableColumn fx:id="productUnitPrice" prefWidth="75.0" text="Column X" />
+                                          <TableColumn fx:id="productQuantity" prefWidth="75.0" text="Column X" />
+                                          <TableColumn fx:id="productNumber" prefWidth="75.0" text="C2" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <contextMenu>
+                                          <ContextMenu>
+                                             <items>
+                                                <MenuItem fx:id="select" disable="true" mnemonicParsing="false" text="Unspecified Action" />
+                                             </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                    </TableView>
+                                 </content>
+                              </ScrollPane>
+                              <VBox layoutX="15.0" layoutY="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="90.0">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <Label fx:id="fromClientLbl" styleClass="header-label" text="Label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <VBox layoutY="46.0" spacing="30.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="35.0">
+                                             <children>
+                                                <JFXTextField fx:id="receivedFromClient" prefWidth="250.0" promptText="This is " />
+                                                <JFXTextField fx:id="restOfOrder" editable="false" focusTraversable="false" prefWidth="250.0" promptText="This is " />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <JFXButton fx:id="save" alignment="CENTER" contentDisplay="RIGHT" disable="true" layoutX="218.0" layoutY="961.0" styleClass="button-filled" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <ScrollPane fitToHeight="true" layoutX="15.0" prefHeight="523.0" prefWidth="487.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <TableView fx:id="salesTable" editable="true" prefHeight="416.0" prefWidth="1000.0" tableMenuButtonVisible="true">
+                                 <columns>
+                                    <TableColumn fx:id="name" prefWidth="75.0" />
+                                    <TableColumn fx:id="serialNumber" prefWidth="75.0" />
+                                    <TableColumn fx:id="number" prefWidth="75.0" />
+                                    <TableColumn fx:id="category" prefWidth="75.0" />
+                                    <TableColumn fx:id="unitPrice" prefWidth="75.0" />
+                                    <TableColumn fx:id="quantity" prefWidth="75.0" />
+                                    <TableColumn fx:id="price" prefWidth="75.0" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <contextMenu>
+                                    <ContextMenu>
+                                       <items>
+                                          <MenuItem fx:id="_edit" disable="true" mnemonicParsing="false" text="Edit" />
+                                          <MenuItem fx:id="delete" disable="true" mnemonicParsing="false" text="Delete" />
+                                       </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                        <HBox layoutX="675.0" layoutY="602.0" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
+                           <children>
+                              <JFXTextField fx:id="productsNumber" editable="false" promptText="Price" />
+                              <JFXTextField fx:id="articlesNumber" editable="false" promptText="Price" />
+                              <JFXTextField fx:id="totalPrice" editable="false" promptText="Price" />
+                              <JFXTextField fx:id="taxedPrice" editable="false" promptText="Price" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

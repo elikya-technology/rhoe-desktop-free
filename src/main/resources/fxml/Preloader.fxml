@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="400.0" style="-fx-background-color: #E91E63;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.PreloaderController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="250.0" layoutX="150.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../icons/preloader.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="99.0" fitWidth="100.0" layoutX="119.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-25.0" AnchorPane.leftAnchor="150.0">
+         <image>
+            <Image url="@../icons/mouse.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

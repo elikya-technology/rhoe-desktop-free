@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane id="AnchorPane" prefHeight="294.0" prefWidth="359.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.ExitApplicationController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefWidth="359.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="110.0" layoutX="-8.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="-5.0" AnchorPane.topAnchor="3.0">
+               <image>
+                  <Image url="@../icons/warning.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="text" alignment="TOP_LEFT" layoutX="130.0" layoutY="90.0" prefHeight="62.0" prefWidth="170.0" styleClass="label-text" text="Halkdjf;alkdsjf;alksdjf;asdkjfkd;ajfdk;j" wrapText="true" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="45.0" />
+            <HBox layoutX="123.0" layoutY="109.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+               <children>
+                  <JFXButton fx:id="yes" defaultButton="true" styleClass="button-filled" />
+                  <JFXButton fx:id="no" styleClass="button-bordered" />
+               </children>
+            </HBox>
+            <JFXCheckBox fx:id="doNotAskAgain" layoutX="14.0" layoutY="138.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

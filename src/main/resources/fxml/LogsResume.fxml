@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.LogsResumeController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="15.0" layoutY="64.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <AnchorPane prefHeight="26.0" prefWidth="278.0" styleClass="pane-search" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="40.0">
+               <children>
+                  <CustomTextField fx:id="searchField" prefHeight="26.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                  <JFXButton fx:id="searchBtn" contentDisplay="CENTER" focusTraversable="false" styleClass="btn-search" text=" " visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/clear.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="logsTable" layoutX="16.0" layoutY="41.0" prefHeight="200.0" prefWidth="1100.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="70.0">
+               <columns>
+                  <TableColumn fx:id="logDate" prefWidth="75.0" text="C1" />
+                  <TableColumn fx:id="logTime" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="productName" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="productSerialNumber" prefWidth="75.0" text="C1" />
+                  <TableColumn fx:id="productNumber" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="action" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="actionQty" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="actionPrice" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="totalPrice" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="actionCurrency" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="currencyRate" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="stockQty" prefWidth="75.0" text="Column X" />
+                  <TableColumn fx:id="reason" prefWidth="75.0" text="Column X" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="export" disable="true" mnemonicParsing="false" text="Unspecified Action" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <AnchorPane AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <JFXButton fx:id="all" focusTraversable="false" styleClass="btn-all" text=" " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/select_all.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <HBox layoutX="55.0" layoutY="3.0" prefHeight="26.0" prefWidth="257.0" spacing="10.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
+                     <children>
+                        <JFXDatePicker fx:id="from" promptText="From" />
+                        <JFXDatePicker fx:id="to" promptText="To" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

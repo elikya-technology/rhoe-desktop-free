@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Hyperlink?>
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="315.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.MenuController">
+   <content>
+      <AnchorPane id="AnchorPane" minHeight="600.0" prefHeight="650.0" prefWidth="300.0" styleClass="root">
+         <children>
+            <ImageView fx:id="picture" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+               <image>
+                  <Image url="@../icons/default_image.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="25.0" layoutY="230.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="230.0">
+               <children>
+                  <Label fx:id="enterpriseName" alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="280.0" style="-fx-text-fill: black;" text="Heaven Networks" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="enterpriseSlogan" alignment="CENTER" prefHeight="17.0" prefWidth="280.0" style="-fx-text-fill: black;" text="We connect your world !!!">
+                     <font>
+                        <Font name="Arial" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="263.0" prefWidth="313.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
+               <children>
+                  <JFXButton fx:id="sales" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        Sales">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/sales.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="products" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        Products">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/products.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="options" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        Options">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/options.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="about" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        About">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/about.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

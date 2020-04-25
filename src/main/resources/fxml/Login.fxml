@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane prefHeight="420.0" prefWidth="450.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.LoginController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="200.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="login" layoutX="14.0" layoutY="22.0" styleClass="stage-header-text" text="Label" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="310.0" fitWidth="310.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="-20.0">
+         <image>
+            <Image url="@../icons/rhoe_logo.png" />
+         </image>
+      </ImageView>
+      <JFXPasswordField fx:id="password" focusColor="#009688" labelFloat="true" layoutX="75.0" layoutY="240.0" promptText="Password" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="250.0" />
+      <JFXButton fx:id="submit" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" disable="true" layoutX="210.0" layoutY="350.0" ripplerFill="WHITE" styleClass="button-filled" text="Log In" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Hyperlink fx:id="forgottenPassword" layoutX="14.0" layoutY="394.0" text="Hyperlink" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
+   </children>
+</AnchorPane>

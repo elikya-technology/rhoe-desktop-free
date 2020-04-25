@@ -1,0 +1,51 @@
+/*
+ * Copyright (c) 2020, Elikya Corporation.
+ */
+
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.elikya.apps.rhoe.desk'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.2.6.RELEASE', ext: 'pom'
+    compile group: 'org.springframework.boot', name: 'spring-boot-maven-plugin', version: '2.2.6.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.6.RELEASE'
+    compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: '3.0.2'
+    compileOnly 'org.projectlombok:lombok'
+    runtime group: 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
+    annotationProcessor 'org.projectlombok:lombok'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.1.2'
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.15'
+    compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.1'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+bootJar {
+    mainClassName = "com.elikya.apps.rhoe.desk.RhoeDesktopApplication"
+}
+
+test {
+    useJUnitPlatform()
+}

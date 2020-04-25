@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+
+<!--
+  ~ Copyright (c) 2020, Elikya Corporation.
+  -->
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.TaxesController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <SplitPane fx:id="splitPane" dividerPositions="0.23" prefHeight="360.0" prefWidth="700.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <items>
+            <AnchorPane fx:id="formPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <JFXTextField fx:id="nameField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="215.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="15.0" />
+                  <JFXTextField fx:id="percentField" layoutX="14.0" layoutY="193.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="75.0" />
+                  <JFXTextField fx:id="costField" layoutX="15.0" layoutY="143.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="135.0" />
+                  <JFXTextArea fx:id="descriptionArea" layoutX="15.0" layoutY="67.0" prefHeight="100.0" prefWidth="245.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="195.0" />
+                  <JFXButton fx:id="save" defaultButton="true" disable="true" layoutX="214.0" layoutY="234.0" styleClass="button-filled" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="380.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <TableView fx:id="taxesTable" layoutX="15.0" prefHeight="416.0" prefWidth="950.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
+                     <columns>
+                        <TableColumn fx:id="name" prefWidth="75.0" />
+                        <TableColumn fx:id="percent" prefWidth="75.0" />
+                        <TableColumn fx:id="cost" prefWidth="75.0" />
+                        <TableColumn fx:id="description" prefWidth="75.0" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem fx:id="excel" disable="true" mnemonicParsing="false" text="Unspecified Action" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem fx:id="_edit" disable="true" mnemonicParsing="false" text="Edit" />
+                              <MenuItem fx:id="delete" disable="true" mnemonicParsing="false" text="Delete" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
+                  <AnchorPane prefHeight="26.0" prefWidth="278.0" styleClass="pane-search" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <CustomTextField fx:id="searchText" prefHeight="26.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton fx:id="searchBtn" contentDisplay="CENTER" focusTraversable="false" styleClass="btn-search" text=" " visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/clear.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
