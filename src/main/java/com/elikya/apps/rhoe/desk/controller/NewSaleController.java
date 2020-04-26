@@ -614,6 +614,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
         buildSaleNumber();
         setProductsInTable();
         productsTable.refresh();
+        barcodeSearch.requestFocus();
     }
 
     private void refreshSalesTable() {

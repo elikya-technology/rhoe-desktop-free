@@ -35,7 +35,7 @@ public class Product implements Serializable {
     private String number;
     @Column(length = 100, name = "serial_number")
     private String serialNumber;
-    @Column(length = 150, unique = true)
+    @Column(length = 150)
     private String barCode;
     @ManyToOne(optional = false)
     @JoinColumn(name = "provider")
