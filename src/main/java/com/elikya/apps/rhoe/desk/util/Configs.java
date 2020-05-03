@@ -61,7 +61,7 @@ public class Configs {
     private static void initProperties() {
         Properties properties = new Properties();
         properties.put("password", "");
-        properties.put("website", "http://www.rhoe.com/license");
+        properties.put("website", "http://www.rhoe.com/");
         properties.put("address", "");
         properties.put("version", "1.0");
         properties.put("currency", "$");
@@ -69,7 +69,7 @@ public class Configs {
         properties.put("close_sale", "true");
         properties.put("converted_value", "");
         properties.put("picture", "");
-        properties.put("mail_address", "example@mail.com");
+        properties.put("mail_address", "");
         properties.put("min_on_sale", "minimum_quantity");
         properties.put("close_product", "true");
         properties.put("business_words", "");
