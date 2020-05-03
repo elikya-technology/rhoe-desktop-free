@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.bill.BillBuilder;
 import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.ProductLog;
 import com.elikya.apps.rhoe.desk.entity.Sale;
@@ -514,7 +515,6 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
                 resetResearchControls();
             }
         });
-
     }
 
     private void resetResearchControls() {
@@ -553,6 +553,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
             logSoldProducts();
             Numbers.incrementNumber(NumberTarget.SALE);
             SaveUpdateObserverImpl.executeAddRecord();
+            BillBuilder.buildAndPrint(sale);
             Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("sale_added"));
         } catch (DataIntegrityViolationException exception) {
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("sale_not_added"));

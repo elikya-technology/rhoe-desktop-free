@@ -15,25 +15,21 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.LicenseListener;
-import com.elikya.apps.rhoe.desk.util.InputRegex;
 import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.util.InputRegex;
+import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.jfoenix.controls.*;
-import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -47,7 +43,7 @@ import java.util.*;
  * @author Mafole Loemelah
  */
 @Component
-public class OptionsController extends Application implements Initializable, ValidationObserver {
+public class OptionsController implements Initializable, ValidationObserver {
 
     @FXML private Label title;
     @FXML private JFXButton close;
@@ -83,8 +79,6 @@ public class OptionsController extends Application implements Initializable, Val
     @FXML private JFXTextField secondCurrency;
     @FXML private JFXTextField conversionValue;
     @FXML private VBox advancedCurrencyZone;
-    @FXML private Label howToLabel;
-    @FXML private Hyperlink faq;
 
     private Properties lang;
     private Properties configs;
@@ -110,7 +104,6 @@ public class OptionsController extends Application implements Initializable, Val
             setAdvancedCurrencySelectedProperty();
             setFolderEventHandler();
         }
-        setFaqEventHandler();
         setSynchronizeEventHandler();
     }
 
@@ -219,7 +212,6 @@ public class OptionsController extends Application implements Initializable, Val
         defaultCurrencyUnit.setPromptText(lang.getProperty("default_currency_unit"));
         secondCurrency.setPromptText(lang.getProperty("second_currency"));
         conversionValue.setPromptText(lang.getProperty("conversion_value"));
-        howToLabel.setText(lang.getProperty("how_to"));
     }
 
     private void setCloseEventHandler() {
@@ -267,14 +259,6 @@ public class OptionsController extends Application implements Initializable, Val
                     Notifier.notify(StagesPaths.INFO_NOTIF, lang.getProperty("no_payment"));
                 }
             });
-        });
-    }
-
-    private void setFaqEventHandler() {
-        faq.setOnAction(event -> {
-            HostServices hostServices = getHostServices();
-            hostServices.showDocument("http://localhost:8080/faq");
-            Stages.close(event);
         });
     }
 
@@ -426,6 +410,4 @@ public class OptionsController extends Application implements Initializable, Val
         sentinels.put("mail_address", configs.getProperty("mail_address"));
     }
 
-    @Override
-    public void start(Stage primaryStage) {}
 }

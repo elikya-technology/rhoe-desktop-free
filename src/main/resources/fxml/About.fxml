@@ -12,7 +12,7 @@
   ~ Copyright (c) 2020, Elikya Corporation.
   -->
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="450.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.AboutController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="450.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.AboutController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -33,7 +33,7 @@
             <Image url="@../icons/rhoe_logo.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="15.0" layoutY="70.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane layoutY="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <VBox layoutX="15.0" layoutY="165.0" spacing="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="170.0">
                <children>

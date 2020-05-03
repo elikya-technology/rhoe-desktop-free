@@ -16,12 +16,13 @@ import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
 import com.elikya.apps.rhoe.desk.util.Configs;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.print.PrinterJob;
+import javafx.print.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
@@ -131,14 +132,14 @@ public class BillBuilder {
         return box;
     }
 
-    private static VBox computePrices(List<Tax> taxList, Sale sale) {
+    private static VBox computePrices(Sale sale) {
         VBox box = new VBox();
         BigDecimal totalPrice = sale.getTotalPrice();
         String currency = ApplicationCurrency.getActualCurrency();
         Label totalET = new Label(lang.getProperty("total_price") + " ("
                 + currency + ")\t:\t\t" + totalPrice.toString());
         box.getChildren().add(totalET);
-        computeTax(taxList, box, totalPrice);
+        computeTax(box, totalPrice);
         BigDecimal taxedPriceValue = sale.getTaxedPrice();
         Label taxedPrice = new Label(lang.getProperty("total_price_tax") + " ("
                 + currency + ")\t:\t\t" + taxedPriceValue);
@@ -154,19 +155,19 @@ public class BillBuilder {
         return box;
     }
 
-    private static void computeTax(List<Tax> taxList, VBox box, BigDecimal totalPrice) {
-        taxList.forEach(it -> {
-            Label text = new Label();
-            BigDecimal cost = it.getCost();
-            if (cost.doubleValue() > 0) {
-                text.setText(it.getName() + " (" + ApplicationCurrency.getActualCurrency() + ")\t:\t\t" + cost);
-            } else {
-                BigDecimal value = (totalPrice.multiply(it.getPercent()))
-                        .divide(BigDecimal.valueOf(100), 3);
-                text.setText(it.getName() + " (" + it.getPercent() + "%)\t:\t\t" + value);
-            }
-            box.getChildren().add(text);
-        });
+    private static void computeTax(VBox box, BigDecimal totalPrice) {
+//        taxList.forEach(it -> {
+//            Label text = new Label();
+//            BigDecimal cost = it.getCost();
+//            if (cost.doubleValue() > 0) {
+//                text.setText(it.getName() + " (" + ApplicationCurrency.getActualCurrency() + ")\t:\t\t" + cost);
+//            } else {
+//                BigDecimal value = (totalPrice.multiply(it.getPercent()))
+//                        .divide(BigDecimal.valueOf(100), 3);
+//                text.setText(it.getName() + " (" + it.getPercent() + "%)\t:\t\t" + value);
+//            }
+//            box.getChildren().add(text);
+//        });
     }
 
     private static VBox getFooter() {
@@ -182,18 +183,25 @@ public class BillBuilder {
     public static void buildAndPrint(Sale sale) {
         VBox box = new VBox();
         box.setPrefWidth(400);
-//        box.getChildren().addAll(getEnterpriseInfos(), getSaleInfos(sale), getLigns(sale.getLigns())
-//                , computePrices(taxList, sale), getFooter());
+        box.getChildren().addAll(getEnterpriseInfos(), getSaleInfos(sale), getFooter());
         box.setStyle("-fx-font-family: Arial;");
         box.setPadding(new Insets(10, 10, 10, 10));
-        Scene scene = new Scene(box);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+//        Scene scene = new Scene(box);
+//        Stage stage = new Stage();
+//        stage.setScene(scene);
+//        stage.show();
         print(box);
     }
 
     private static void print(VBox box) {
+//        Printer printer = Printer.getDefaultPrinter();
+//        PageLayout pageLayout = printer.createPageLayout(Paper.NA_LETTER, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
+//        double scaleX = pageLayout.getPrintableWidth() / box.getBoundsInParent().getWidth();
+//        double scaleY = pageLayout.getPrintableHeight() / box.getBoundsInParent().getHeight();
+//        box.getTransforms().add(new Scale(scaleX, scaleY));
+//
+//        System.out.println(printer.getName());
+
         Optional<PrinterJob> printerJob = Optional.ofNullable(PrinterJob.createPrinterJob());
         printerJob.ifPresent(it -> {
             boolean printed = it.printPage(box);

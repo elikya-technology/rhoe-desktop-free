@@ -601,3 +601,11 @@
 .hyperlink {
     -fx-border-color: transparent;
 }
+
+.footer-label {
+    -fx-font-family: Arial;
+    -fx-text-fill: white;
+}
+.footer-label:hover {
+    -fx-background-color: #1A1A1A;
+}

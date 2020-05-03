@@ -13,6 +13,7 @@ import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,16 +34,15 @@ import java.util.logging.Logger;
  *
  * @author Mafole Loemelah
  */
-public class MainController implements Initializable, LanguageObserver {
+public class MainController extends Application implements Initializable, LanguageObserver {
 
-    @FXML
-    private AnchorPane container;
-    @FXML
-    private JFXButton hamburger;
-    @FXML
-    private JFXDrawer drawer;
-    @FXML
-    private Label title;
+    @FXML private AnchorPane container;
+    @FXML private JFXButton hamburger;
+    @FXML private JFXDrawer drawer;
+    @FXML private Label title;
+    @FXML private Label feedback;
+    @FXML private Label faq;
+
     public static final int DRAWER_WIDTH = 315;
 
     private static String text = "sales";
@@ -52,6 +53,8 @@ public class MainController implements Initializable, LanguageObserver {
         lang = ControlsHandler.getLanguage();
         setHamburgerListener();
         setDrawerEventHandler();
+        setFeedbackMouseEvent();
+        setFaqMouseEvent();
         ControlsHandler.setDrawer(drawer);
         if (LicenseListener.licenseIsValid()) {
             LanguageObserverImpl.register(this);
@@ -65,6 +68,7 @@ public class MainController implements Initializable, LanguageObserver {
     public void updateLanguage() {
         lang = ControlsHandler.getLanguage();
         title.setText(lang.getProperty(text));
+        feedback.setText(lang.getProperty("feedback"));
     }
 
     public static void setText(String _text) {
@@ -99,4 +103,18 @@ public class MainController implements Initializable, LanguageObserver {
         });
     }
 
+    private void setFeedbackMouseEvent() {
+        feedback.setOnMouseClicked(event -> {
+            Stages.showDialog(StagesPaths.FEEDBACK);
+        });
+    }
+
+    private void setFaqMouseEvent() {
+        faq.setOnMouseClicked(event -> {
+            getHostServices().showDocument("http://localhost:8080/faq");
+        });
+    }
+
+    @Override
+    public void start(Stage primaryStage) {}
 }
