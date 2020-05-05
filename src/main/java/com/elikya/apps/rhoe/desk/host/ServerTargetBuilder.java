@@ -22,7 +22,7 @@ public class ServerTargetBuilder {
     public static void buildTarget() {
         Client client = ClientBuilder.newClient();
         target = client.target(BackendHostHandler.BACKEND_URI);
-
+        target.request().get();
     }
 
 }
