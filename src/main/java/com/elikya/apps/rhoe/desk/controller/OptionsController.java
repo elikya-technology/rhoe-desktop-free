@@ -270,6 +270,7 @@ public class OptionsController implements Initializable, ValidationObserver {
                     if (BackendService.emailExists(mailAddress.getText())) {
                         Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
                     } else {
+                        System.out.println("NOT TAKEN");
                         CodeVerifierController.setEmail(mailAddress.getText());
                         showCodeVerifier(event);
                     }
@@ -355,7 +356,7 @@ public class OptionsController implements Initializable, ValidationObserver {
     }
 
     private boolean accountIsUpdated() {
-        return !configs.getProperty("mail_address").equals(sentinels.get("mail_address"));
+        return !mailAddress.getText().equals(sentinels.get("mail_address"));
     }
 
     private boolean rateIsDouble() {

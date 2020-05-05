@@ -2,7 +2,7 @@
  * Copyright (c) 2020, Elikya Corporation.
  */
 
-package com.elikya.apps.rhoe.desk.util;
+package com.elikya.apps.rhoe.desk.host;
 
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
@@ -19,7 +19,7 @@ import java.util.Properties;
  */
 public class BackendHostHandler {
 
-    public static String BACKEND_URI = "http://localhost:8080";
+    public static String BACKEND_URI = "https://rhoe-proxy.herokuapp.com/";
 
     public static boolean isConnected() {
         try {

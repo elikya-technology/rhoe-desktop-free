@@ -12,7 +12,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.BackendHostHandler;
+import com.elikya.apps.rhoe.desk.host.BackendHostHandler;
 import com.elikya.apps.rhoe.desk.util.Configs;
 import com.elikya.apps.rhoe.desk.util.InputRegex;
 import com.jfoenix.controls.JFXButton;
