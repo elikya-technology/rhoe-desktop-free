@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -88,7 +89,7 @@ public class AccountController implements Initializable, ValidationObserver {
     }
 
     private void processVerificationSteps(ActionEvent event) {
-        if (BackendService.emailExists(mailAddress.getText())) {
+        if (BackendService.emailExists(mailAddress.getText()).isPresent()) {
             Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
         } else {
             callCodeVerifier(event);
@@ -104,12 +105,14 @@ public class AccountController implements Initializable, ValidationObserver {
 
     @Override
     public void processUpdateValidation() {
-        subscriber = BackendService.requestSaveAccount(buildSubscriber());
-        if (!subscriber.isEmpty()) {
-            writeAccountData();
-            ValidationObserverImpl.unregister(this);
-            Stages.showNextStage();
-        }
+        Optional<Subscriber> result = BackendService.requestSaveAccount(buildSubscriber());
+        result.ifPresent(value -> {
+            if (!value.isEmpty()) {
+                writeAccountData();
+                ValidationObserverImpl.unregister(this);
+                Stages.showNextStage();
+            }
+        });
     }
 
     private Subscriber buildSubscriber() {

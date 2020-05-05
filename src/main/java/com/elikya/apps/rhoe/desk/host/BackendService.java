@@ -8,17 +8,16 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.elikya.apps.rhoe.desk.util.Configs;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-
+import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.Properties;
 
-import static com.elikya.apps.rhoe.desk.host.ServerTargetBuilder.*;
+import static com.elikya.apps.rhoe.desk.host.ServerTargetBuilder.getTarget;
 
 public class BackendService {
 
@@ -29,23 +28,42 @@ public class BackendService {
         return response.readEntity(String.class);
     }
 
-    public static Subscriber requestSaveAccount(Subscriber subscriber) {
-        WebTarget target = getTarget();
-        Response response = target.path("/subscribers/save_one").request().post(Entity.json(subscriber));
-        return response.readEntity(Subscriber.class);
+    public static Optional<Subscriber> requestSaveAccount(Subscriber subscriber) {
+        try {
+            WebTarget target = getTarget();
+            Response response = target.path("/subscribers/save_one").request().post(Entity.json(subscriber));
+            return Optional.ofNullable(response.readEntity(Subscriber.class));
+        } catch (ProcessingException e) {
+            Properties lang = ControlsHandler.getLanguage();
+            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
+        }
+        return Optional.empty();
     }
 
-    public static Subscriber requestUpdateAccount(Subscriber subscriber) {
-        WebTarget target = getTarget();
-        Response response = target.path("/subscribers/update_one").request().put(Entity.json(subscriber));
-        return response.readEntity(Subscriber.class);
+    public static Optional<Subscriber> requestUpdateAccount(Subscriber subscriber) {
+        try {
+            WebTarget target = getTarget();
+            Response response = target.path("/subscribers/update_one").request().put(Entity.json(subscriber));
+            return Optional.ofNullable(response.readEntity(Subscriber.class));
+        } catch (ProcessingException e) {
+            Properties lang = ControlsHandler.getLanguage();
+            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
+        }
+        return Optional.empty();
     }
 
-    public static boolean emailExists(String email) {
-        WebTarget target = getTarget();
-        Response response = target.path("/subscribers/email_exists")
-                .request().post(Entity.json(email));
-        return response.readEntity(Boolean.class);
+    public static Optional<Boolean> emailExists(String email) {
+        try {
+            WebTarget target = getTarget();
+            Response response = target.path("/subscribers/email_exists")
+                    .request().post(Entity.json(email));
+            String result = response.readEntity(String.class);
+            return Optional.of(Boolean.parseBoolean(result));
+        } catch (ProcessingException e) {
+            Properties lang = ControlsHandler.getLanguage();
+            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
+        }
+        return Optional.empty();
     }
 
     public static OptionalInt requestNotSynchedMonths() {
@@ -74,7 +92,6 @@ public class BackendService {
             String value = response.readEntity(String.class);
             return Boolean.parseBoolean(value);
         } catch (ProcessingException e) {
-            e.printStackTrace();
             Properties lang = ControlsHandler.getLanguage();
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
         }

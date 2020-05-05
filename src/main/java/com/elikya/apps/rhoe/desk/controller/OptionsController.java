@@ -267,7 +267,7 @@ public class OptionsController implements Initializable, ValidationObserver {
             if (!anyRequiredFieldIsEmpty() && advancedCurrencyIsValid()
                     && enterpriseAddressIsValid() && emailIsValid()) {
                 if(accountIsUpdated()) {
-                    if (BackendService.emailExists(mailAddress.getText())) {
+                    if (BackendService.emailExists(mailAddress.getText()).isPresent()) {
                         Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
                     } else {
                         System.out.println("NOT TAKEN");
