@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -105,13 +106,17 @@ public class MainController extends Application implements Initializable, Langua
 
     private void setFeedbackMouseEvent() {
         feedback.setOnMouseClicked(event -> {
-            Stages.showDialog(StagesPaths.FEEDBACK);
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                Stages.showDialog(StagesPaths.FEEDBACK);
+            }
         });
     }
 
     private void setFaqMouseEvent() {
         faq.setOnMouseClicked(event -> {
-            getHostServices().showDocument("http://localhost:8080/faq");
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                getHostServices().showDocument("http://www.elikyarhoe.com/faq");
+            }
         });
     }
 

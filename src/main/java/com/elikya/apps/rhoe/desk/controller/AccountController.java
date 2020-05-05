@@ -107,7 +107,8 @@ public class AccountController implements Initializable, ValidationObserver {
     public void processUpdateValidation() {
         Optional<Subscriber> result = BackendService.requestSaveAccount(buildSubscriber());
         result.ifPresent(value -> {
-            if (!value.isEmpty()) {
+            subscriber = result.get();
+            if (!subscriber.isEmpty()) {
                 writeAccountData();
                 ValidationObserverImpl.unregister(this);
                 Stages.showNextStage();
