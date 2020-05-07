@@ -142,7 +142,7 @@ public class BillBuilder {
         box.getChildren().add(totalET);
         BigDecimal taxedPriceValue = sale.getTaxedPrice();
         Label taxedPrice = new Label(lang.getProperty("total_price_tax") + " ("
-                + currency + ")\t\t:\t\t" + taxedPriceValue);
+                + currency + ")\t\t:\t\t" + NumbersFormatter.getFormattedString(taxedPriceValue));
         BigDecimal moneyReceivedValue = sale.getMoneyReceived();
         Label moneyReceived = new Label(lang.getProperty("money_received") + " ("
                 + currency + ")\t\t:\t\t" + moneyReceivedValue.toString());
