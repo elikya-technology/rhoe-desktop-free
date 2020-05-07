@@ -4,7 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
-import com.elikya.apps.rhoe.desk.host.Subscriber;
+import com.elikya.apps.rhoe.desk.host.BackendService;
 import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
@@ -21,11 +21,7 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.Properties;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  *
@@ -58,7 +54,7 @@ public class CodeVerifierController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setLanguage();
-        codeText = getValidationCode();
+        callEmailSender();
         setSubmitEventHandler();
         setCloseEventHandler();
         setCodeTextProperty();
@@ -79,14 +75,16 @@ public class CodeVerifierController implements Initializable {
 
     private void setSubmitEventHandler() {
         submit.setOnAction(e -> {
-            if (codeText.equals(code.getText())) {
-                timer.cancel();
-                callObserver();
-                Stages.close(e);
-            } else {
-                Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("invalid_code"));
-                code.requestFocus();
-                code.selectAll();
+            if (!codeText.isEmpty()) {
+                if (codeText.equals(code.getText())) {
+                    timer.cancel();
+                    callObserver();
+                    Stages.close(e);
+                } else {
+                    Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("invalid_code"));
+                    code.requestFocus();
+                    code.selectAll();
+                }
             }
         });
     }
@@ -94,14 +92,19 @@ public class CodeVerifierController implements Initializable {
     private void callObserver() {
         if (context.equals(VerificationContext.DELETION))
             ValidationObserverImpl.executeProcessDelete();
-        else if (context.equals(VerificationContext.UPDATING))
+        if (context.equals(VerificationContext.UPDATING))
             ValidationObserverImpl.executeProcessUpdate();
-        else if (context.equals(VerificationContext.STOCK_UP))
+        if (context.equals(VerificationContext.STOCK_UP))
             ValidationObserverImpl.executeProcessStockingUp();
-        else if (context.equals(VerificationContext.WITHDRAW))
+        if (context.equals(VerificationContext.WITHDRAW))
             ValidationObserverImpl.executeProcessWithdraw();
-        else
-            throw new UnsupportedOperationException("NO VALIDATION CONTEXT PROVIDED");
+
+        nullifyFields();
+    }
+
+    private void nullifyFields() {
+        email = null;
+        codeText = "";
     }
 
     private void setCloseEventHandler() {
@@ -119,25 +122,17 @@ public class CodeVerifierController implements Initializable {
         });
     }
 
-    private String getValidationCode() {
-//        try {
-//            if (account == null)
-//                account = buildAccount();
-//            return AccountBackendHost.requestSendMail(account);
-//        } catch (ProcessingException exception) {
-//            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
-//            code.setDisable(true);
-//        }
-//        return "";
-
-        //REMOVE THE FOLLOWING ...
-        return LocalDate.now().toString();
-
+    private void callEmailSender() {
+        Platform.runLater(() -> {
+            if (email == null)
+                email = getConfigsEmail();
+            Optional<String> codeValue = BackendService.requestSendMail(email);
+            codeText = codeValue.orElse("");
+        });
     }
 
-    private Subscriber buildAccount() {
-        Properties configs = Configs.get();
-        return Subscriber.builder().email(configs.getProperty("mail_address")).build();
+    private String getConfigsEmail() {
+        return Configs.get().getProperty("mail_address");
     }
 
     private void initTimer() {

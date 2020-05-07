@@ -21,11 +21,17 @@ import static com.elikya.apps.rhoe.desk.host.ServerTargetBuilder.getTarget;
 
 public class BackendService {
 
-    public static String requestSendMail(String email) {
-        WebTarget target = getTarget();
-        Response response = target.path("/subscribers/send_mail").request()
-                .post(Entity.json(email));
-        return response.readEntity(String.class);
+    public static Optional<String> requestSendMail(String email) {
+        try {
+            WebTarget target = getTarget();
+            Response response = target.path("/subscribers/send_mail").request()
+                    .post(Entity.json(email));
+            return Optional.ofNullable(response.readEntity(String.class));
+        } catch (ProcessingException e) {
+            Properties lang = ControlsHandler.getLanguage();
+            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
+        }
+        return Optional.empty();
     }
 
     public static Optional<Subscriber> requestSaveAccount(Subscriber subscriber) {
@@ -40,16 +46,15 @@ public class BackendService {
         return Optional.empty();
     }
 
-    public static Optional<Subscriber> requestUpdateAccount(Subscriber subscriber) {
+    public static void requestUpdateAccount(Subscriber subscriber) {
         try {
             WebTarget target = getTarget();
             Response response = target.path("/subscribers/update_one").request().put(Entity.json(subscriber));
-            return Optional.ofNullable(response.readEntity(Subscriber.class));
+            response.readEntity(Subscriber.class);
         } catch (ProcessingException e) {
             Properties lang = ControlsHandler.getLanguage();
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
         }
-        return Optional.empty();
     }
 
     public static Optional<Boolean> emailExists(String email) {
@@ -58,8 +63,10 @@ public class BackendService {
             Response response = target.path("/subscribers/email_exists")
                     .request().post(Entity.json(email));
             String result = response.readEntity(String.class);
+            System.out.println(result);
             return Optional.of(Boolean.parseBoolean(result));
         } catch (ProcessingException e) {
+            e.printStackTrace();
             Properties lang = ControlsHandler.getLanguage();
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
         }

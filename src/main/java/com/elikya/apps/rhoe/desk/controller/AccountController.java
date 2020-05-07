@@ -89,11 +89,11 @@ public class AccountController implements Initializable, ValidationObserver {
     }
 
     private void processVerificationSteps(ActionEvent event) {
-        if (BackendService.emailExists(mailAddress.getText()).isPresent()) {
-            Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
-        } else {
-            callCodeVerifier(event);
-        }
+        Optional<Boolean> result = BackendService.emailExists(mailAddress.getText());
+        result.ifPresent(value -> {
+            if (value) Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
+            else callCodeVerifier(event);
+        });
     }
 
     private void callCodeVerifier(ActionEvent event) {

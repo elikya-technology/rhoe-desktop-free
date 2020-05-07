@@ -267,12 +267,14 @@ public class OptionsController implements Initializable, ValidationObserver {
             if (!anyRequiredFieldIsEmpty() && advancedCurrencyIsValid()
                     && enterpriseAddressIsValid() && emailIsValid()) {
                 if(accountIsUpdated()) {
-                    if (BackendService.emailExists(mailAddress.getText()).isPresent()) {
-                        Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
-                    } else {
-                        System.out.println("NOT TAKEN");
-                        CodeVerifierController.setEmail(mailAddress.getText());
-                        showCodeVerifier(event);
+                    Optional<Boolean> result = BackendService.emailExists(mailAddress.getText());
+                    if (result.isPresent()) {
+                        if (result.get())
+                            Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("mail_taken"));
+                        else {
+                            CodeVerifierController.setEmail(mailAddress.getText());
+                            showCodeVerifier(event);
+                        }
                     }
                 } else {
                     showCodeVerifier(event);
@@ -350,9 +352,11 @@ public class OptionsController implements Initializable, ValidationObserver {
     }
 
     private void showCodeVerifier(ActionEvent event) {
-        CodeVerifierController.setContext(CodeVerifierController.VerificationContext.UPDATING);
-        Stages.showDialog(StagesPaths.CODE_VERIFIER);
-        Stages.close(event);
+        Platform.runLater(() -> {
+            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.UPDATING);
+            Stages.showDialog(StagesPaths.CODE_VERIFIER);
+            Stages.close(event);
+        });
     }
 
     private boolean accountIsUpdated() {

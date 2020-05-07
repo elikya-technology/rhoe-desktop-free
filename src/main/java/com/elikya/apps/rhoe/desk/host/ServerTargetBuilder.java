@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.host;
 
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -20,9 +21,11 @@ public class ServerTargetBuilder {
 
 
     public static void buildTarget() {
-        Client client = ClientBuilder.newClient();
-        target = client.target(BackendHostHandler.BACKEND_URI);
-        target.request().get();
+        try {
+            Client client = ClientBuilder.newClient();
+            target = client.target(BackendHostHandler.BACKEND_URI);
+            target.request().get();
+        } catch (ProcessingException ignored) {}
     }
 
 }

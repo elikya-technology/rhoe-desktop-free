@@ -7,23 +7,21 @@ package com.elikya.apps.rhoe.desk.bill;
 import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.Sale;
 import com.elikya.apps.rhoe.desk.entity.SaleLine;
-import com.elikya.apps.rhoe.desk.entity.Tax;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
-import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
 import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.print.*;
-import javafx.scene.Scene;
+import javafx.print.JobSettings;
+import javafx.print.PageLayout;
+import javafx.print.PrinterJob;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Scale;
-import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
@@ -37,6 +35,8 @@ import java.util.Properties;
  */
 public class BillBuilder {
 
+    public static final int BOX_WIDTH = 400;
+    public static final int LIGNS_BOX_WITH = 90;
     private static Properties options = Configs.get();
     private static Properties lang = ControlsHandler.getLanguage();
 
@@ -51,13 +51,13 @@ public class BillBuilder {
         VBox box = new VBox();
         box.getChildren().addAll(enterprise, slogan, address, separate());
         box.setAlignment(Pos.CENTER);
-        box.setPrefWidth(400);
+        box.setPrefWidth(BOX_WIDTH);
         return box;
     }
 
     private static VBox getSaleInfos(Sale sale) {
-        Label number = new Label(lang.getProperty("sale_number") + "\t:\t" + sale.getNumber());
-        Label date = new Label(lang.getProperty("date") + "\t\t:\t" + sale.getSaleDate());
+        Label number = new Label(lang.getProperty("sale_number") + "\t\t:\t" + sale.getNumber());
+        Label date = new Label(lang.getProperty("date") + "\t\t\t:\t" + sale.getSaleDate());
         Label time = new Label(lang.getProperty("time") + "\t\t:\t" + sale.getSaleTime()
                 .format(DateTimeFormatter.ofPattern("hh:mm:ss")));
         return new VBox(number, date, time, separate());
@@ -81,24 +81,24 @@ public class BillBuilder {
 
     private static VBox getLigns(List<SaleLine> ligns) {
         VBox prodBox = new VBox();
-        prodBox.setPrefWidth(90);
+        prodBox.setPrefWidth(LIGNS_BOX_WITH);
         prodBox.setSpacing(10);
         VBox upBox = new VBox();
-        upBox.setPrefWidth(90);
+        upBox.setPrefWidth(LIGNS_BOX_WITH);
         upBox.setSpacing(10);
         upBox.setAlignment(Pos.CENTER);
         VBox qtyBox = new VBox();
         qtyBox.setSpacing(10);
-        qtyBox.setPrefWidth(90);
+        qtyBox.setPrefWidth(LIGNS_BOX_WITH);
         qtyBox.setAlignment(Pos.CENTER);
         VBox priceBox = new VBox();
-        priceBox.setPrefWidth(90);
+        priceBox.setPrefWidth(LIGNS_BOX_WITH);
         priceBox.setSpacing(10);
         priceBox.setAlignment(Pos.TOP_RIGHT);
         getOrderHeader(prodBox, upBox, qtyBox, priceBox);
         processLigns(ligns, prodBox, upBox, qtyBox, priceBox);
         HBox box = new HBox();
-        box.setPrefWidth(400);
+        box.setPrefWidth(BOX_WIDTH);
         box.setSpacing(10);
         box.getChildren().addAll(prodBox, upBox, qtyBox, priceBox);
         box.setAlignment(Pos.CENTER);
@@ -126,55 +126,38 @@ public class BillBuilder {
         Label separator = new Label("-----------------------------" +
                 "--------------------------------------------------");
         VBox box = new VBox();
-        box.setPrefWidth(400);
+        box.setPrefWidth(BOX_WIDTH);
         box.getChildren().add(separator);
         box.setAlignment(Pos.CENTER);
         return box;
     }
 
-    private static VBox computePrices(Sale sale) {
+    private static VBox resumePrices(Sale sale) {
         VBox box = new VBox();
-        BigDecimal totalPrice = sale.getTotalPrice();
         String currency = ApplicationCurrency.getActualCurrency();
         Label totalET = new Label(lang.getProperty("total_price") + " ("
-                + currency + ")\t:\t\t" + totalPrice.toString());
+                + currency + ")\t:\t\t" + sale.getTotalPrice().toString());
         box.getChildren().add(totalET);
-        computeTax(box, totalPrice);
         BigDecimal taxedPriceValue = sale.getTaxedPrice();
         Label taxedPrice = new Label(lang.getProperty("total_price_tax") + " ("
-                + currency + ")\t:\t\t" + taxedPriceValue);
+                + currency + ")\t\t:\t\t" + taxedPriceValue);
         BigDecimal moneyReceivedValue = sale.getMoneyReceived();
         Label moneyReceived = new Label(lang.getProperty("money_received") + " ("
-                + currency + ")\t:\t\t" + moneyReceivedValue.toString());
+                + currency + ")\t\t:\t\t" + moneyReceivedValue.toString());
         BigDecimal diff = moneyReceivedValue.subtract(taxedPriceValue);
         Label difference = new Label(lang.getProperty("rest") + " ("
-                + currency + ")\t:\t\t" + NumbersFormatter.getFormattedString(diff));
+                + currency + ")\t\t:\t\t" + NumbersFormatter.getFormattedString(diff));
         box.getChildren().addAll(taxedPrice, moneyReceived, difference, separate());
         box.setSpacing(5);
         box.setAlignment(Pos.BOTTOM_RIGHT);
         return box;
     }
 
-    private static void computeTax(VBox box, BigDecimal totalPrice) {
-//        taxList.forEach(it -> {
-//            Label text = new Label();
-//            BigDecimal cost = it.getCost();
-//            if (cost.doubleValue() > 0) {
-//                text.setText(it.getName() + " (" + ApplicationCurrency.getActualCurrency() + ")\t:\t\t" + cost);
-//            } else {
-//                BigDecimal value = (totalPrice.multiply(it.getPercent()))
-//                        .divide(BigDecimal.valueOf(100), 3);
-//                text.setText(it.getName() + " (" + it.getPercent() + "%)\t:\t\t" + value);
-//            }
-//            box.getChildren().add(text);
-//        });
-    }
-
     private static VBox getFooter() {
         Label text = new Label(lang.getProperty("thank_you"));
         text.setStyle("-fx-font-weight: bold;");
         VBox box = new VBox();
-        box.setPrefWidth(400);
+        box.setPrefWidth(BOX_WIDTH);
         box.setAlignment(Pos.CENTER);
         box.getChildren().add(text);
         return box;
@@ -182,32 +165,28 @@ public class BillBuilder {
 
     public static void buildAndPrint(Sale sale) {
         VBox box = new VBox();
-        box.setPrefWidth(400);
-        box.getChildren().addAll(getEnterpriseInfos(), getSaleInfos(sale), getFooter());
+        box.getChildren().addAll(getEnterpriseInfos(), getSaleInfos(sale)
+                , getLigns(sale.getLines()), resumePrices(sale), getFooter());
         box.setStyle("-fx-font-family: Arial;");
         box.setPadding(new Insets(10, 10, 10, 10));
-//        Scene scene = new Scene(box);
-//        Stage stage = new Stage();
-//        stage.setScene(scene);
-//        stage.show();
         print(box);
     }
 
     private static void print(VBox box) {
-//        Printer printer = Printer.getDefaultPrinter();
-//        PageLayout pageLayout = printer.createPageLayout(Paper.NA_LETTER, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
-//        double scaleX = pageLayout.getPrintableWidth() / box.getBoundsInParent().getWidth();
-//        double scaleY = pageLayout.getPrintableHeight() / box.getBoundsInParent().getHeight();
-//        box.getTransforms().add(new Scale(scaleX, scaleY));
-//
-//        System.out.println(printer.getName());
-
         Optional<PrinterJob> printerJob = Optional.ofNullable(PrinterJob.createPrinterJob());
         printerJob.ifPresent(it -> {
+            resizeBox(box, it);
             boolean printed = it.printPage(box);
-            if (!printed) {
-                Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("not_printed"));
-            }
+            if (printed) it.endJob();
+            else Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("not_printed"));
         });
+    }
+
+    private static void resizeBox(VBox box, PrinterJob it) {
+        JobSettings jobSettings = it.getJobSettings();
+        PageLayout pageLayout = jobSettings.getPageLayout();
+        double pageWidth = pageLayout.getPrintableWidth();
+        double pageHeight = pageLayout.getPrintableHeight();
+        box.setPrefSize(pageWidth, pageHeight);
     }
 }
