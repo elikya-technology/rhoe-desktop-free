@@ -171,11 +171,7 @@ public class BillBuilder {
                 , getLigns(sale.getLines()), resumePrices(sale), getFooter());
         box.setStyle("-fx-font-family: Arial;");
         box.setPadding(new Insets(10, 10, 10, 10));
-        Scene scene = new Scene(box);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-//        print(box);
+        print(box);
     }
 
     private static void print(VBox box) {
