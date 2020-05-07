@@ -124,7 +124,7 @@ public class BillBuilder {
 
     private static VBox separate() {
         Label separator = new Label("-----------------------------" +
-                "--------------------------------------------------");
+                "--------------------------------------------------\n");
         VBox box = new VBox();
         box.setPrefWidth(BOX_WIDTH);
         box.getChildren().add(separator);
