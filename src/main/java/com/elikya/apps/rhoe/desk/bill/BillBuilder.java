@@ -18,10 +18,12 @@ import javafx.geometry.Pos;
 import javafx.print.JobSettings;
 import javafx.print.PageLayout;
 import javafx.print.PrinterJob;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
@@ -113,11 +115,11 @@ public class BillBuilder {
             Text prod = new Text(product.getLabel() + " " + product.getSerialNumber());
             prodBox.getChildren().add(prod);
             BigDecimal upValue = it.getPrice().divide(BigDecimal.valueOf(it.getQuantity()), 3);
-            Label up = new Label(String.valueOf(upValue));
+            Label up = new Label(NumbersFormatter.getFormattedString(upValue));
             upBox.getChildren().add(up);
             Label qty = new Label(String.valueOf(it.getQuantity()));
             qtyBox.getChildren().add(qty);
-            Label price = new Label(String.valueOf(it.getPrice()));
+            Label price = new Label(NumbersFormatter.getFormattedString(it.getPrice()));
             priceBox.getChildren().add(price);
         });
     }
@@ -169,7 +171,11 @@ public class BillBuilder {
                 , getLigns(sale.getLines()), resumePrices(sale), getFooter());
         box.setStyle("-fx-font-family: Arial;");
         box.setPadding(new Insets(10, 10, 10, 10));
-        print(box);
+        Scene scene = new Scene(box);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+//        print(box);
     }
 
     private static void print(VBox box) {
