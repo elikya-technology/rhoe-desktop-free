@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <!--
-  ~ Copyright (c) 2020, Elikya Corporation.
+  ~ Copyright (c) 2020, Elikya Technology.
   -->
 
 <AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="400.0" style="-fx-background-color: #E91E63;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.PreloaderController">
