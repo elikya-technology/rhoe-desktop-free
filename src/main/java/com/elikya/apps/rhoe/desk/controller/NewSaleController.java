@@ -474,8 +474,8 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
         try {
             sale.setTaxedPrice(computeUnconvertedTotalPriceTax());
             sale.setTotalPrice(computeUnconvertedTotalPrice());
-            sale.setMoneyReceived(BigDecimal.valueOf(Double.parseDouble(NumbersFormatter
-                    .removeThousandsSeparator(receivedFromClient.getText()))));
+            sale.setMoneyReceived(new BigDecimal(NumbersFormatter
+                    .removeThousandsSeparator(receivedFromClient.getText())));
         } catch (NumberFormatException exception) {
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("invalid_numeric_values"));
         }

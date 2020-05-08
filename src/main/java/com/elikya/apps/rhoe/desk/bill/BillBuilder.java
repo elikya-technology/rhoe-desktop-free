@@ -18,10 +18,12 @@ import javafx.geometry.Pos;
 import javafx.print.JobSettings;
 import javafx.print.PageLayout;
 import javafx.print.PrinterJob;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +40,7 @@ public class BillBuilder {
     public static final int BOX_WIDTH = 400;
     public static final int LIGNS_BOX_WITH = 90;
     private static Properties options = Configs.get();
-    private static Properties lang = ControlsHandler.getLanguage();
+    private static Properties lang;
 
     private static VBox getEnterpriseInfos() {
         String style = "-fx-font-weight: bold; -fx-font-size: 14;";
@@ -112,12 +114,14 @@ public class BillBuilder {
             Product product = it.getProduct();
             Text prod = new Text(product.getLabel() + " " + product.getSerialNumber());
             prodBox.getChildren().add(prod);
-            BigDecimal upValue = it.getPrice().divide(BigDecimal.valueOf(it.getQuantity()), 3);
+            BigDecimal convertedPrice = it.getPrice().multiply(BigDecimal
+                    .valueOf(ApplicationCurrency.getActualRate()));
+            BigDecimal upValue = convertedPrice.divide(BigDecimal.valueOf(it.getQuantity()), 3);
             Label up = new Label(NumbersFormatter.getFormattedString(upValue));
             upBox.getChildren().add(up);
             Label qty = new Label(String.valueOf(it.getQuantity()));
             qtyBox.getChildren().add(qty);
-            Label price = new Label(NumbersFormatter.getFormattedString(it.getPrice()));
+            Label price = new Label(NumbersFormatter.getFormattedString(convertedPrice));
             priceBox.getChildren().add(price);
         });
     }
@@ -135,15 +139,17 @@ public class BillBuilder {
     private static VBox resumePrices(Sale sale) {
         VBox box = new VBox();
         String currency = ApplicationCurrency.getActualCurrency();
+        BigDecimal actualRate = BigDecimal.valueOf(ApplicationCurrency.getActualRate());
+        BigDecimal total = sale.getTotalPrice().multiply(actualRate);
         Label totalET = new Label(lang.getProperty("total_price") + " ("
-                + currency + ")\t:\t\t" + sale.getTotalPrice().toString());
+                + currency + ")\t:\t\t" + NumbersFormatter.getFormattedString(total));
         box.getChildren().add(totalET);
-        BigDecimal taxedPriceValue = sale.getTaxedPrice();
+        BigDecimal taxedPriceValue = sale.getTaxedPrice().multiply(actualRate);
         Label taxedPrice = new Label(lang.getProperty("total_price_tax") + " ("
                 + currency + ")\t\t:\t\t" + NumbersFormatter.getFormattedString(taxedPriceValue));
         BigDecimal moneyReceivedValue = sale.getMoneyReceived();
         Label moneyReceived = new Label(lang.getProperty("money_received") + " ("
-                + currency + ")\t\t:\t\t" + moneyReceivedValue.toString());
+                + currency + ")\t\t:\t\t" + NumbersFormatter.getFormattedString(moneyReceivedValue));
         BigDecimal diff = moneyReceivedValue.subtract(taxedPriceValue);
         Label difference = new Label(lang.getProperty("rest") + " ("
                 + currency + ")\t\t:\t\t" + NumbersFormatter.getFormattedString(diff));
@@ -164,6 +170,7 @@ public class BillBuilder {
     }
 
     public static void buildAndPrint(Sale sale) {
+        lang = ControlsHandler.getLanguage();
         VBox box = new VBox();
         box.getChildren().addAll(getEnterpriseInfos(), getSaleInfos(sale)
                 , getLigns(sale.getLines()), resumePrices(sale), getFooter());
