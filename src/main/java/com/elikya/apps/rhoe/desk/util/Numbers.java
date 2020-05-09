@@ -14,7 +14,7 @@ import java.util.Properties;
  */
 public class Numbers {
 
-    private static final String FILE_PATH = "bin/items.properties";
+    private static final String FILE_PATH = "cf/items.properties";
     private static Properties numbers;
 
     public static void load() {

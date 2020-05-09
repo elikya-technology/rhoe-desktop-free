@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class Configs {
 
-    private static final String CONFIGS_PATH = "bin/rhoe.properties";
+    private static final String CONFIGS_PATH = "cf/rhoe.properties";
     private static Properties configs;
 
     public static void load() {

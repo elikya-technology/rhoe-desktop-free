@@ -8,6 +8,8 @@ hs_err_pid4978.log
 hs_err_pid5967.log
 replay_pid5475.log
 db
+cf
+pr
 !**/src/main/**
 !**/src/test/**
 
