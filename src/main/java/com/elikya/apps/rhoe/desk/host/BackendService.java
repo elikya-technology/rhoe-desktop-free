@@ -63,7 +63,6 @@ public class BackendService {
             Response response = target.path("/subscribers/email_exists")
                     .request().post(Entity.json(email));
             String result = response.readEntity(String.class);
-            System.out.println(result);
             return Optional.of(Boolean.parseBoolean(result));
         } catch (ProcessingException e) {
             e.printStackTrace();
