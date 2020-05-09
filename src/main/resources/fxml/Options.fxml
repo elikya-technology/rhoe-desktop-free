@@ -134,7 +134,7 @@
                                     <HBox AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="710.0">
                                        <children>
                                           <JFXTextField fx:id="deadline" editable="false" prefWidth="230.0" />
-                                          <JFXButton fx:id="synchronize" alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="23.0" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-background-radius: 30;" text=" ">
+                                          <JFXButton fx:id="synchronize" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="37.0" prefWidth="23.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" text=" ">
                                              <graphic>
                                                 <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>

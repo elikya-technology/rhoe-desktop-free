@@ -10,12 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Hyperlink?>
 <!--
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="315.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.MenuController">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="315.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.MenuController">
    <content>
       <AnchorPane id="AnchorPane" minHeight="600.0" prefHeight="650.0" prefWidth="300.0" styleClass="root">
          <children>
@@ -52,7 +51,7 @@
                         </ImageView>
                      </graphic>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
                   <JFXButton fx:id="products" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        Products">
@@ -67,7 +66,7 @@
                         </ImageView>
                      </graphic>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
                   <JFXButton fx:id="options" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        Options">
@@ -82,7 +81,7 @@
                         </ImageView>
                      </graphic>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
                   <JFXButton fx:id="about" alignment="TOP_LEFT" focusTraversable="false" prefHeight="50.0" prefWidth="315.0" styleClass="menu-button" text="        About">
@@ -97,7 +96,7 @@
                         </ImageView>
                      </graphic>
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
                </children>

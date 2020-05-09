@@ -65,7 +65,6 @@ public class BackendService {
             String result = response.readEntity(String.class);
             return Optional.of(Boolean.parseBoolean(result));
         } catch (ProcessingException e) {
-            e.printStackTrace();
             Properties lang = ControlsHandler.getLanguage();
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
         }
@@ -80,7 +79,6 @@ public class BackendService {
             String text = response.readEntity(String.class);
             return OptionalInt.of(Integer.parseInt(text));
         } catch (ProcessingException | NumberFormatException e) {
-            e.printStackTrace();
             Properties lang = ControlsHandler.getLanguage();
             Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
         }

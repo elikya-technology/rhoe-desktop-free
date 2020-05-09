@@ -25,7 +25,6 @@
     -fx-alignment : CENTER;
     -fx-content-display: center;
     -jfx-rippler-fill : white;
-    -fx-cursor: hand;
 }
 
 
@@ -36,7 +35,6 @@
     -fx-pref-width : 42;
     -fx-pref-height : 42;
     -jfx-rippler-fill : #F48FB1;
-    -fx-cursor : hand;
     -fx-content-display : center;
 }
 .button-icon:hover {
@@ -50,7 +48,6 @@
     -fx-pref-width : 50;
     -fx-pref-height : 50;
     -jfx-rippler-fill : #F48FB1;
-    -fx-cursor : hand;
     -fx-content-display : center;
 }
 .button-hamburger:hover {
@@ -71,7 +68,6 @@
     -fx-pref-width : 50;
     -fx-pref-height : 50;
     -jfx-rippler-fill : #F48FB1;
-    -fx-cursor : hand;
     -fx-content-display : center;
 }
 .button-login-icon:hover {
@@ -292,7 +288,6 @@
     -fx-background-color : transparent;
 }
 .context-menu .context-menu .menu-item:hover {
-    -fx-cursor : hand;
     -fx-background-color : #E0E0E0;
 }
 .context-menu .context-menu .menu-item .label .text {
@@ -303,7 +298,6 @@
 /* Date Pickers */
 .jfx-date-picker {
     -jfx-default-color : #2E4D7D;
-    -fx-cursor : hand;
 }
 .jfx-date-picker .date-picker-display-node .input-line {
     -fx-background-color : #2E4D7D;
@@ -322,7 +316,6 @@
 /* Time Pickers */
 .jfx-time-picker {
     -jfx-default-color : #E91E63;
-    -fx-cursor : hand;
 }
 .jfx-time-picker .time-picker-display-node .input-line {
     -fx-background-color : #F48FB1;
@@ -347,7 +340,6 @@
     -jfx-rippler-fill : white;
     -fx-text-fill : white;
     -fx-font-family : Arial;
-    -fx-cursor : hand;
     -fx-font-weight : bold;
 }
 .button-filled:hover {
@@ -365,7 +357,6 @@
     -jfx-rippler-fill : #bdbdbd;
     -fx-text-fill : #455A64;
     -fx-font-family : Arial;
-    -fx-cursor : hand;
     -fx-font-weight: bold;
 }
 .button-bordered:hover {
@@ -441,7 +432,6 @@
 }
 .jfx-radio-button .jfx-rippler {
     -jfx-rippler-fill : #E91E63;
-    -fx-cursor : hand;
 }
 .jfx-radio-button .text {
     -fx-font-family : Arial;
