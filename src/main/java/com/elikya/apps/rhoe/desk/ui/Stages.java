@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -37,6 +38,7 @@ public class Stages {
     private static double dragOffsetY;
     private static AnchorPane mainContainer;
     private static ConfigurableApplicationContext context;
+    private static Image appIcon = new Image("icons/favicon.png");
 
     public static void setApplicationContext(ConfigurableApplicationContext _context) {
         context = _context;
@@ -68,6 +70,7 @@ public class Stages {
             Stage stage = buildStage(name);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setAlwaysOnTop(true);
+            stage.getIcons().add(appIcon);
             stage.show();
         } catch (IOException exception) {
             Logger.getLogger(Stages.class.getName()).log(Level.SEVERE,
@@ -97,6 +100,7 @@ public class Stages {
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(scene);
+            stage.getIcons().add(appIcon);
             stage.show();
             ScreenUtils.setFadeTransition(5, root);
             ScreenUtils.setDelay(stage, 9, NextStageContext.EFFECTIVE);
@@ -124,6 +128,7 @@ public class Stages {
             stage.setMaximized(true);
             stage.setTitle("Elikya Rhoe");
             handleMainApplicationExitRequest(stage);
+            stage.getIcons().add(appIcon);
             stage.show();
         } catch (IOException exception) {
             Logger.getLogger(Stages.class.getName()).log(Level.SEVERE,
@@ -153,6 +158,7 @@ public class Stages {
                 stage.setWidth(size.get("x"));
                 stage.setHeight(size.get("y"));
                 stage.initModality(Modality.APPLICATION_MODAL);
+                stage.getIcons().add(appIcon);
                 stage.show();
             } catch (IOException exception) {
                 Logger.getLogger(Stages.class.getName()).log(Level.SEVERE,
