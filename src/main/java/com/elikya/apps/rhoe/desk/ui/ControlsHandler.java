@@ -72,7 +72,7 @@ public class ControlsHandler {
     public static Properties getLanguage() {
         Properties read = Configs.get();
         String language = read.getProperty("language");
-        return language.equals(Locale.ENGLISH.getDisplayName())
+        return language.equals("English")
                 ? LanguageResource.read(LanguageResource.Target.LANG_ENGLISH)
                 : LanguageResource.read(LanguageResource.Target.LANG_FRENCH);
     }
