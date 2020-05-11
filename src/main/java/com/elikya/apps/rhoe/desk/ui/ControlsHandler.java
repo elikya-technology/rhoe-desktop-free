@@ -4,20 +4,20 @@
 
 package com.elikya.apps.rhoe.desk.ui;
 
-import com.elikya.apps.rhoe.desk.util.LanguageResource;
 import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.util.LanguageResource;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXTextField;
-import java.io.File;
-import java.util.Locale;
-import java.util.Properties;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import org.controlsfx.control.textfield.CustomTextField;
+
+import java.io.File;
+import java.util.Properties;
 
 /**
  *
