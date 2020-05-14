@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.host.BackendHostHandler;
 import com.elikya.apps.rhoe.desk.host.BackendService;
 import com.elikya.apps.rhoe.desk.host.Subscriber;
 import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
@@ -12,7 +13,6 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.host.BackendHostHandler;
 import com.elikya.apps.rhoe.desk.util.Configs;
 import com.elikya.apps.rhoe.desk.util.InputRegex;
 import com.jfoenix.controls.JFXButton;
