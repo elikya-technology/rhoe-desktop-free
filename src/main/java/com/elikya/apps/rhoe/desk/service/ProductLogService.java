@@ -53,7 +53,7 @@ public class ProductLogService {
 
     private void insertHyphensOnEmptyLogs(List<ProductLog> logs) {
         logs.forEach(it -> {
-            if (it.getReason() ==  null)
+            if (it.getReason() ==  null || it.getReason().trim().isEmpty())
                 it.setReason("-");
         });
     }
