@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.net.URL;
 
 /**
  *
@@ -33,7 +32,7 @@ public class Notifier {
                 Scene scene = new Scene(parent);
                 stage.setScene(scene);
                 stage.setX(ScreenUtils.getScreenWidth() - 325);
-                stage.setY(ScreenUtils.getScreenHeight() - 70);
+                stage.setY(ScreenUtils.getScreenHeight() - 90);
                 ScreenUtils.setFadeTransition(1, parent);
                 stage.show();
                 ScreenUtils.setDelay(stage, 3, ScreenUtils.NextStageContext.NONE);
