@@ -32,7 +32,7 @@ public class Notifier {
                 Scene scene = new Scene(parent);
                 stage.setScene(scene);
                 stage.setX(ScreenUtils.getScreenWidth() - 325);
-                stage.setY(ScreenUtils.getScreenHeight() - 90);
+                stage.setY(ScreenUtils.getScreenHeight() - 100);
                 ScreenUtils.setFadeTransition(1, parent);
                 stage.show();
                 ScreenUtils.setDelay(stage, 3, ScreenUtils.NextStageContext.NONE);
