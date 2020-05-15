@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig;
 import com.elikya.apps.rhoe.desk.exporters.CategoryExporter;
 import com.elikya.apps.rhoe.desk.exporters.ProviderExporter;
 import com.elikya.apps.rhoe.desk.entity.Category;
@@ -15,7 +16,7 @@ import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
 import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.*;
 import com.elikya.apps.rhoe.desk.util.*;
-import com.elikya.apps.rhoe.desk.util.Numbers.NumberTarget;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -382,7 +383,7 @@ public class MoreController implements Initializable, ValidationObserver {
         Category added = categoryService.save(category);
         categoriesList.add(added);
         putCategoriesInTable();
-        Numbers.incrementNumber(NumberTarget.CATEGORY);
+        NumbersConfig.incrementNumber(NumberTarget.CATEGORY);
         Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("category_saved"));
     }
 
@@ -518,12 +519,12 @@ public class MoreController implements Initializable, ValidationObserver {
     }
 
     private void setCategoryNumber(String newValue) {
-        String chars = Numbers.pickChars(newValue);
+        String chars = NumbersConfig.pickChars(newValue);
         String number;
         if (updatableCategory != null) {
             number = updatableCategory.getNumber().split("-")[1];
         } else {
-            number = Numbers.pickNumber(NumberTarget.CATEGORY);
+            number = NumbersConfig.pickNumber(NumberTarget.CATEGORY);
         }
         categoryNumberField.setText(chars.concat("-").concat(number));
     }

@@ -5,7 +5,7 @@
 package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.ui.Stages;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
@@ -49,9 +49,9 @@ public class LanguageController implements Initializable {
     private void setSaveEventHandler() {
         save.setOnAction(event -> {
             String item = language.getSelectionModel().getSelectedItem();
-            Properties properties = Configs.get();
+            Properties properties = RhoeConfig.get();
             properties.replace("language", item);
-            Configs.write(properties);
+            RhoeConfig.write(properties);
             Stages.close(event);
             Stages.showNextStage();
         });

@@ -4,6 +4,8 @@
 
 package com.elikya.apps.rhoe.desk.util;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -27,7 +29,7 @@ public class NumbersFormatter {
     }
 
     private static String buildPattern() {
-        Properties preferences = Configs.get();
+        Properties preferences = RhoeConfig.get();
         String decimals = preferences.getProperty("decimals");
         int number = Integer.parseInt(decimals);
         StringBuilder pattern = new StringBuilder("#, ###.");

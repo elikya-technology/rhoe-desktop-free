@@ -15,7 +15,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.InputRegex;
 import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.jfoenix.controls.*;
@@ -86,7 +86,7 @@ public class OptionsController implements Initializable, ValidationObserver {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        configs = Configs.get();
+        configs = RhoeConfig.get();
         lang = ControlsHandler.getLanguage();
         setControlsTooltips();
         setCloseEventHandler();
@@ -112,7 +112,7 @@ public class OptionsController implements Initializable, ValidationObserver {
         if (accountIsUpdated())
             BackendService.requestUpdateAccount(buildSubscriber());
         replaceConfigs();
-        Configs.write(configs);
+        RhoeConfig.write(configs);
         Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("settings_saved"));
         notifyChangedOption();
         ValidationObserverImpl.unregister(this);
@@ -250,9 +250,9 @@ public class OptionsController implements Initializable, ValidationObserver {
             months.ifPresent(value -> {
                 if (value > 0) {
                     String newDate = LicenseListener.getNewDueDate(value);
-                    Properties properties = Configs.get();
+                    Properties properties = RhoeConfig.get();
                     properties.replace("due_date", newDate);
-                    Configs.write(properties);
+                    RhoeConfig.write(properties);
                     deadline.setText(newDate);
                     Notifier.notify(StagesPaths.INFO_NOTIF, lang.getProperty("restart_app"));
                 } else {

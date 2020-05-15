@@ -13,7 +13,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.InputRegex;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -121,10 +121,10 @@ public class AccountController implements Initializable, ValidationObserver {
     }
 
     private void writeAccountData() {
-        Properties configs = Configs.get();
+        Properties configs = RhoeConfig.get();
         configs.put("mail_address", subscriber.getEmail());
         configs.put("subs_key", subscriber.getId());
-        Configs.write(configs);
+        RhoeConfig.write(configs);
     }
 
 }

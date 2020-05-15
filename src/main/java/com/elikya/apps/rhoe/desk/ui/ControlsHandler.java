@@ -4,7 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.ui;
 
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.LanguageResource;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
@@ -59,7 +59,7 @@ public class ControlsHandler {
     }
 
     public static void handlePicture(ImageView imageView) {
-        String path = Configs.get().getProperty("picture");
+        String path = RhoeConfig.get().getProperty("picture");
         File file = new File(path);
         if (file.exists()) {
             Image image = new Image("file:".concat(path), imageView.getFitWidth(),
@@ -70,7 +70,7 @@ public class ControlsHandler {
     }
 
     public static Properties getLanguage() {
-        Properties read = Configs.get();
+        Properties read = RhoeConfig.get();
         String language = read.getProperty("language");
         return language.equals("English")
                 ? LanguageResource.read(LanguageResource.Target.LANG_ENGLISH)

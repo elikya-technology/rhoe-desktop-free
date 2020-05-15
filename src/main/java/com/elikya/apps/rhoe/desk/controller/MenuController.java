@@ -10,7 +10,7 @@ import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
@@ -44,7 +44,7 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        preferences = Configs.get();
+        preferences = RhoeConfig.get();
         lang = ControlsHandler.getLanguage();
         setLanguage();
         ControlsHandler.handlePicture(picture);

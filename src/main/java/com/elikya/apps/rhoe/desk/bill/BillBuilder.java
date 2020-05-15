@@ -11,7 +11,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,7 +37,7 @@ public class BillBuilder {
 
     public static final int BOX_WIDTH = 400;
     public static final int LIGNS_BOX_WITH = 90;
-    private static Properties options = Configs.get();
+    private static Properties options = RhoeConfig.get();
     private static Properties lang;
 
     private static VBox getEnterpriseInfos() {

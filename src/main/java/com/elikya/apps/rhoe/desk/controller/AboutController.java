@@ -6,7 +6,7 @@ package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +48,7 @@ public class AboutController implements Initializable {
     }
     
     private void setVersion() {
-        Properties configs = Configs.get();
+        Properties configs = RhoeConfig.get();
         version.setText(configs.getProperty("version"));
     }
 }

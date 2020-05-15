@@ -5,8 +5,8 @@
 package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.host.ServerTargetBuilder;
-import com.elikya.apps.rhoe.desk.util.Configs;
-import com.elikya.apps.rhoe.desk.util.Numbers;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -17,10 +17,10 @@ public class PreloaderController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ServerTargetBuilder.buildTarget();
-        Configs.checkPropertiesFile();
-        Numbers.checkNumbersFile();
-        Configs.load();
-        Numbers.load();
+        RhoeConfig.checkPropertiesFile();
+        NumbersConfig.checkNumbersFile();
+        RhoeConfig.load();
+        NumbersConfig.load();
     }
 
 }

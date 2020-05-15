@@ -6,7 +6,7 @@ package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.application.Platform;
@@ -35,7 +35,7 @@ public class ExitApplicationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lang = ControlsHandler.getLanguage();
-        configs = Configs.get();
+        configs = RhoeConfig.get();
         setLanguage();
         setCloseEventHandler();
         setNoEventHandler();
@@ -61,7 +61,7 @@ public class ExitApplicationController implements Initializable {
 
     private void setYesEventHandler() {
         yes.setOnAction(event -> {
-            Configs.write(configs);
+            RhoeConfig.write(configs);
             Platform.exit();
         });
     }

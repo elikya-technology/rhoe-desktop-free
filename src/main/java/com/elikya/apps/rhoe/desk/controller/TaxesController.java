@@ -12,7 +12,7 @@ import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.*;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
 import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -153,7 +153,7 @@ public class TaxesController implements Initializable, ValidationObserver {
         nameField.setPromptText(lang.getProperty("name"));
         name.setText(lang.getProperty("name"));
         costField.setPromptText(lang.getProperty("cost")
-                .concat(" (" + Configs.get()
+                .concat(" (" + RhoeConfig.get()
                         .getProperty("currency") + ")"));
         cost.setText(lang.getProperty("cost") + " ("
                 + ApplicationCurrency.getActualCurrency() + ")");

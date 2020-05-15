@@ -16,7 +16,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -87,7 +87,7 @@ public class ReportsController implements Initializable, ValidationObserver {
     public void initialize(URL url, ResourceBundle rb) {
         ValidationObserverImpl.register(this);
         lang = ControlsHandler.getLanguage();
-        currency = Configs.get().getProperty("currency");
+        currency = RhoeConfig.get().getProperty("currency");
         getSelectedIdsSales();
         ControlsHandler.handleSearchZone(searchField, searchBtn);
         TableViewOperation.handleSelection(reportsTable);

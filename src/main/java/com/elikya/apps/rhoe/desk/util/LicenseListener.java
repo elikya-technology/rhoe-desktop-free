@@ -4,12 +4,14 @@
 
 package com.elikya.apps.rhoe.desk.util;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
+
 import java.time.LocalDate;
 import java.util.Properties;
 
 public class LicenseListener {
 
-    private static Properties configs = Configs.get();
+    private static Properties configs = RhoeConfig.get();
 
     public static String getNewDueDate(int months) {
         LocalDate initDate = getInitDate();

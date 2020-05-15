@@ -5,7 +5,7 @@
 package com.elikya.apps.rhoe.desk.ui;
 
 import com.elikya.apps.rhoe.desk.ui.ScreenUtils.NextStageContext;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -111,7 +111,7 @@ public class Stages {
     }
 
     public static void showNextStage() {
-        Properties prop = Configs.get();
+        Properties prop = RhoeConfig.get();
         if (prop.getProperty("language").trim().isEmpty()) showDialog(StagesPaths.LANGUAGE);
         else if (prop.getProperty("mail_address").trim().isEmpty()) showDialog(StagesPaths.ACCOUNT);
         else if (prop.getProperty("enterprise").trim().isEmpty()) showDialog(StagesPaths.ENTERPRISE);
@@ -140,7 +140,7 @@ public class Stages {
         stage.setOnCloseRequest(e -> {
             if (e.getEventType() == WindowEvent.WINDOW_CLOSE_REQUEST) {
                 e.consume();
-                Properties configs = Configs.get();
+                Properties configs = RhoeConfig.get();
                 if (Boolean.parseBoolean(configs.getProperty("enclosing_layout"))) {
                     showDialog(StagesPaths.EXIT_APPLICATION);
                 } else {

@@ -10,7 +10,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.fxml.FXML;
@@ -48,7 +48,7 @@ public class LoginController implements Initializable, ValidationObserver {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        appPassword = Configs.get().getProperty("password");
+        appPassword = RhoeConfig.get().getProperty("password");
         ValidationObserverImpl.register(this);
         lang = ControlsHandler.getLanguage();
         setLanguage();

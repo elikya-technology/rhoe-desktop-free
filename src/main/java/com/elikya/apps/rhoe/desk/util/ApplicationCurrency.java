@@ -4,6 +4,8 @@
 
 package com.elikya.apps.rhoe.desk.util;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
+
 import java.util.Properties;
 
 public class ApplicationCurrency {
@@ -32,7 +34,7 @@ public class ApplicationCurrency {
     }
 
     private static Properties getConfigs() {
-        return Configs.get();
+        return RhoeConfig.get();
     }
 
 }

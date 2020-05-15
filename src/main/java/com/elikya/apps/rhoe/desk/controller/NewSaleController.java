@@ -5,6 +5,8 @@
 package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.bill.BillBuilder;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.ProductLog;
 import com.elikya.apps.rhoe.desk.entity.Sale;
@@ -19,7 +21,7 @@ import com.elikya.apps.rhoe.desk.observers.interfaces.ProductQtyObserver;
 import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.*;
 import com.elikya.apps.rhoe.desk.util.*;
-import com.elikya.apps.rhoe.desk.util.Numbers.NumberTarget;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
 import com.elikya.apps.rhoe.desk.util.TableViewOperation.FactoryContext;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -162,7 +164,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
     }
 
     private void initOptions() throws NumberFormatException {
-        options = Configs.get();
+        options = RhoeConfig.get();
         currency = ApplicationCurrency.getActualCurrency();
         closeValue = options.getProperty("close_sale");
     }
@@ -274,7 +276,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
     }
 
     private void buildSaleNumber() {
-        String num = Numbers.pickNumber(NumberTarget.SALE);
+        String num = NumbersConfig.pickNumber(NumberTarget.SALE);
         String numberValue = LocalDate.now().format(
                 DateTimeFormatter.BASIC_ISO_DATE) + "-" + num;
         saleNumber.setText(numberValue);
@@ -551,7 +553,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
             setNewSaleDetails();
             saleService.save(sale);
             logSoldProducts();
-            Numbers.incrementNumber(NumberTarget.SALE);
+            NumbersConfig.incrementNumber(NumberTarget.SALE);
             SaveUpdateObserverImpl.executeAddRecord();
             BillBuilder.buildAndPrint(sale);
             Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("sale_added"));

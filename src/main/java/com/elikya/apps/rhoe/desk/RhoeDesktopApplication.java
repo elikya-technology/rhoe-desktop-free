@@ -4,12 +4,19 @@
 
 package com.elikya.apps.rhoe.desk;
 
+import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
+import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
+import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Properties;
 
 @SpringBootApplication
 public class RhoeDesktopApplication extends Application {
@@ -24,9 +31,15 @@ public class RhoeDesktopApplication extends Application {
     }
 
     @Override
-    public void init() {
-        ConfigurableApplicationContext context = SpringApplication.run(RhoeDesktopApplication.class);
-        Stages.setApplicationContext(context);
+    public void init() throws InterruptedException {
+        try {
+            ConfigurableApplicationContext context = SpringApplication.run(RhoeDesktopApplication.class);
+            Stages.setApplicationContext(context);
+        } catch (BeanCreationException e) {
+            Notifier.notify(StagesPaths.ERROR_NOTIF, "Unknown Datasource");
+            Thread.sleep(4000);
+            Platform.exit();
+        }
     }
 
 }

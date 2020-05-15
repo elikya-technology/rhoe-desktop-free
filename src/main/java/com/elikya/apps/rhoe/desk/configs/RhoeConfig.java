@@ -2,7 +2,11 @@
  * Copyright (c) 2020, Elikya Technology.
  */
 
-package com.elikya.apps.rhoe.desk.util;
+package com.elikya.apps.rhoe.desk.configs;
+
+import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.ui.Notifier;
+import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -14,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Mafole Loemelah
  */
-public class Configs {
+public class RhoeConfig {
 
     private static final String CONFIGS_PATH = "cf/rhoe.properties";
     private static Properties configs;
@@ -25,11 +29,14 @@ public class Configs {
             try (InputStream input = new FileInputStream(CONFIGS_PATH)) {
                 properties.load(input);
                 configs = ConfigsEncryptor.decryptProperties(properties);
+                ConfigsValidator.exitOnUnknownApplicationConfig(configs);
             } catch (IOException ex) {
-                Logger.getLogger(Configs.class.getName()).log(Level.SEVERE, null, ex);
+                Notifier.notify(StagesPaths.ERROR_NOTIF, "COULD NOT LOAD APPLICATION CONFIGS");
             }
         }
     }
+
+
 
     public static Properties get() {
         return configs;
@@ -40,7 +47,7 @@ public class Configs {
             Properties encrypted = ConfigsEncryptor.encryptProperties(properties);
             encrypted.store(output, null);
         } catch (IOException ex) {
-            Logger.getLogger(Configs.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RhoeConfig.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -80,6 +87,7 @@ public class Configs {
         properties.put("enterprise", "");
         properties.put("decimals", "2");
         properties.put("subs_key", "");
+        properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
         properties.put("due_date", LocalDate.now().plusWeeks(2));
         write(properties);
     }

@@ -10,7 +10,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -85,7 +85,7 @@ public class ProductQuantityController implements Initializable {
     }
 
     private int pickProductLimitQty() {
-        Properties options = Configs.get();
+        Properties options = RhoeConfig.get();
         String min = options.getProperty("min_on_sale");
         return min.equals("1") ? Integer.parseInt(min) : saleLine.getProduct().getMinimumQuantity();
     }

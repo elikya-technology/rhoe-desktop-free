@@ -4,6 +4,8 @@
 
 package com.elikya.apps.rhoe.desk.util;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
+
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
@@ -23,7 +25,7 @@ public class DayOfWeekPicker {
     }
 
     public static Locale getLocale() {
-        Properties configs = Configs.get();
+        Properties configs = RhoeConfig.get();
         String language = configs.getProperty("language");
         if (language.toLowerCase().equals("english"))
             return Locale.US;

@@ -2,7 +2,11 @@
  * Copyright (c) 2020, Elikya Technology.
  */
 
-package com.elikya.apps.rhoe.desk.util;
+package com.elikya.apps.rhoe.desk.configs;
+
+import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.ui.Notifier;
+import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 
 import java.io.*;
 import java.text.DecimalFormat;
@@ -12,7 +16,7 @@ import java.util.Properties;
  *
  * @author Mafole Loemelah
  */
-public class Numbers {
+public class NumbersConfig {
 
     private static final String FILE_PATH = "cf/items.properties";
     private static Properties numbers;
@@ -24,8 +28,9 @@ public class Numbers {
                 InputStream inputStream = new FileInputStream(FILE_PATH);
                 properties.load(inputStream);
                 numbers = ConfigsEncryptor.decryptProperties(properties);
+                ConfigsValidator.exitOnUnknownApplicationConfig(numbers);
             } catch (IOException exception) {
-                exception.printStackTrace();
+                Notifier.notify(StagesPaths.ERROR_NOTIF, "COULD NOT LOAD APPLICATION CONFIGS");
             }
         }
     }
@@ -91,6 +96,7 @@ public class Numbers {
         properties.put("sales", "1");
         properties.put("categories", "1");
         properties.put("products", "1");
+        properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
         write(properties);
     }
 

@@ -7,7 +7,7 @@ package com.elikya.apps.rhoe.desk.host;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Entity;
@@ -86,7 +86,7 @@ public class BackendService {
     }
 
     private static String getSubscriberKey() {
-        Properties configs = Configs.get();
+        Properties configs = RhoeConfig.get();
         return configs.getProperty("subs_key");
     }
 

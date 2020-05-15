@@ -18,10 +18,10 @@ import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
-import com.elikya.apps.rhoe.desk.util.Numbers;
-import com.elikya.apps.rhoe.desk.util.Numbers.NumberTarget;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
 import com.elikya.apps.rhoe.desk.util.KeyCodeText;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -216,8 +216,8 @@ public class ProductHandlerController implements Initializable {
     private void setProductNumber(String newValue) {
         String num;
         if (product != null) num = product.getNumber().split("-")[1];
-        else num = Numbers.pickNumber(NumberTarget.PRODUCT);
-        String chars = Numbers.pickChars(newValue);
+        else num = NumbersConfig.pickNumber(NumberTarget.PRODUCT);
+        String chars = NumbersConfig.pickChars(newValue);
         number.setText(chars.concat("-").concat(num));
     }
 
@@ -246,7 +246,7 @@ public class ProductHandlerController implements Initializable {
             product = buildProduct();
             productService.save(product);
             persistAddedProductLog();
-            Numbers.incrementNumber(NumberTarget.PRODUCT);
+            NumbersConfig.incrementNumber(NumberTarget.PRODUCT);
             SaveUpdateObserverImpl.executeAddRecord();
             notifySuccess("product_added");
         } catch (DataIntegrityViolationException e) {
@@ -271,7 +271,7 @@ public class ProductHandlerController implements Initializable {
 
     private void handleEnclosing(ActionEvent event) {
         nullifyProduct();
-        Properties conf = Configs.get();
+        Properties conf = RhoeConfig.get();
         if (Boolean.parseBoolean(conf.getProperty("close_product"))) Stages.close(event);
         else resetFields();
     }

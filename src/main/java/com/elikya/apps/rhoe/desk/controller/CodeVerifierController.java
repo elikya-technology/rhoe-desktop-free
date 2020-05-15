@@ -10,7 +10,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -132,7 +132,7 @@ public class CodeVerifierController implements Initializable {
     }
 
     private String getConfigsEmail() {
-        return Configs.get().getProperty("mail_address");
+        return RhoeConfig.get().getProperty("mail_address");
     }
 
     private void initTimer() {

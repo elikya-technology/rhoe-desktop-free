@@ -10,7 +10,7 @@ import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.Configs;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -56,7 +56,7 @@ public class FeedbackController implements Initializable {
 
     private void setSubmitEventHandler() {
         submit.setOnAction(event -> {
-            String email = Configs.get().getProperty("mail_address");
+            String email = RhoeConfig.get().getProperty("mail_address");
             Feedback feedback = Feedback.builder().content(content.getText())
                     .email(email).subject(subject.getText()).name("desktop-user").build();
             boolean submitted = BackendService.requestSubmitFeedback(feedback);
