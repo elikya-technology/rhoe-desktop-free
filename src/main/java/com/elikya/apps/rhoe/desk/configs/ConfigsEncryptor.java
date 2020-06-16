@@ -8,6 +8,7 @@ import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.properties.EncryptableProperties;
+
 import java.util.Properties;
 
 public class ConfigsEncryptor {
