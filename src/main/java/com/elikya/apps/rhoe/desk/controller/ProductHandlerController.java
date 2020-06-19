@@ -12,7 +12,7 @@ import com.elikya.apps.rhoe.desk.service.CategoryService;
 import com.elikya.apps.rhoe.desk.service.ProductLogService;
 import com.elikya.apps.rhoe.desk.service.ProductService;
 import com.elikya.apps.rhoe.desk.service.ProviderService;
-import com.elikya.apps.rhoe.desk.observers.impl.SaveUpdateObserverImpl;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
@@ -237,7 +237,7 @@ public class ProductHandlerController implements Initializable {
                 , Integer.parseInt(maximumQuantity.getText()), Integer.parseInt(minimumQuantity.getText())
                 , Integer.parseInt(realQuantity.getText()), BigDecimal.valueOf(Double.parseDouble(unitPrice.getText())));
         productService.update(product);
-        SaveUpdateObserverImpl.executeUpdateRecord();
+        CRUDMasterImpl.executeUpdateRecord();
         notifySuccess("product_edited");
     }
 
@@ -247,7 +247,7 @@ public class ProductHandlerController implements Initializable {
             productService.save(product);
             persistAddedProductLog();
             NumbersConfig.incrementNumber(NumberTarget.PRODUCT);
-            SaveUpdateObserverImpl.executeAddRecord();
+            CRUDMasterImpl.executeAddRecord();
             notifySuccess("product_added");
         } catch (DataIntegrityViolationException e) {
             Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("product_duplicate"));

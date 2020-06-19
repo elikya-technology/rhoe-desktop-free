@@ -6,22 +6,23 @@ package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.bill.BillBuilder;
 import com.elikya.apps.rhoe.desk.configs.NumbersConfig;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
 import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.ProductLog;
 import com.elikya.apps.rhoe.desk.entity.Sale;
 import com.elikya.apps.rhoe.desk.entity.SaleLine;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
+import com.elikya.apps.rhoe.desk.observers.impl.ProductQtyObserverImpl;
+import com.elikya.apps.rhoe.desk.observers.interfaces.ProductQtyObserver;
 import com.elikya.apps.rhoe.desk.service.ProductLogService;
 import com.elikya.apps.rhoe.desk.service.ProductService;
 import com.elikya.apps.rhoe.desk.service.SaleService;
-import com.elikya.apps.rhoe.desk.observers.impl.ProductQtyObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.impl.SaveUpdateObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.interfaces.ProductQtyObserver;
-import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.*;
-import com.elikya.apps.rhoe.desk.util.*;
-import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
+import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
+import com.elikya.apps.rhoe.desk.util.KeyCodeText;
+import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
+import com.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.elikya.apps.rhoe.desk.util.TableViewOperation.FactoryContext;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -58,7 +59,7 @@ import java.util.stream.Collectors;
  * @author Mafole Loemelah
  */
 @Component
-public class NewSaleController implements Initializable, ProductQtyObserver, ValidationObserver {
+public class NewSaleController implements Initializable, ProductQtyObserver {
 
     @FXML private JFXButton close;
     @FXML private Label title;
@@ -111,7 +112,6 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ProductQtyObserverImpl.register(this);
-        ValidationObserverImpl.register(this);
         lang = ControlsHandler.getLanguage();
         ControlsHandler.handleSearchZone(searchText, searchBtn);
         SplitPaneDividerManager.resize(splitPane);
@@ -156,13 +156,6 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
         this.productLogService = productLogService;
     }
 
-    @Override
-    public void processUpdateValidation() {
-        List<SaleLine> items = salesTable.getSelectionModel().getSelectedItems();
-        salesTable.getItems().removeAll(items);
-        salesTable.refresh();
-    }
-
     private void initOptions() throws NumberFormatException {
         options = RhoeConfig.get();
         currency = ApplicationCurrency.getActualCurrency();
@@ -195,7 +188,6 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
     private void setCloseEventHandler() {
         close.setOnAction(event -> {
             ProductQtyObserverImpl.unregister();
-            ValidationObserverImpl.unregister(this);
             Stages.close(event);
         });
     }
@@ -379,8 +371,9 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
 
     private void setDeleteEventHandler() {
         delete.setOnAction(e -> {
-            CodeVerifierController.setContext(
-                    CodeVerifierController.VerificationContext.UPDATING);
+            List<SaleLine> items = salesTable.getSelectionModel().getSelectedItems();
+            salesTable.getItems().removeAll(items);
+            salesTable.refresh();
             Stages.showDialog(StagesPaths.CODE_VERIFIER);
         });
     }
@@ -554,7 +547,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver, Val
             saleService.save(sale);
             logSoldProducts();
             NumbersConfig.incrementNumber(NumberTarget.SALE);
-            SaveUpdateObserverImpl.executeAddRecord();
+            CRUDMasterImpl.executeAddRecord();
             BillBuilder.buildAndPrint(sale);
             Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("sale_added"));
         } catch (DataIntegrityViolationException exception) {

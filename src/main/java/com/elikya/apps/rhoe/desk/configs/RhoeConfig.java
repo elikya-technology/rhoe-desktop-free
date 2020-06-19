@@ -9,7 +9,6 @@ import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +75,6 @@ public class RhoeConfig {
         properties.put("close_sale", "true");
         properties.put("converted_value", "");
         properties.put("picture", "");
-        properties.put("mail_address", "");
         properties.put("min_on_sale", "minimum_quantity");
         properties.put("close_product", "true");
         properties.put("business_words", "");
@@ -88,7 +86,6 @@ public class RhoeConfig {
         properties.put("decimals", "2");
         properties.put("subs_key", "");
         properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
-        properties.put("due_date", LocalDate.now().plusWeeks(2));
         write(properties);
     }
 

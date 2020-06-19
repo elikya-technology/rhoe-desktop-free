@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
@@ -62,7 +63,7 @@ public class DeletionDialogController implements Initializable {
     private void setYesEventHandler() {
         yes.setOnAction(event -> {
             Stages.close(event);
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.DELETION);
+            CRUDMasterImpl.executeDeleteRecord();
             Stages.showDialog(StagesPaths.CODE_VERIFIER);
         });
     }

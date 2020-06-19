@@ -8,10 +8,10 @@ import com.elikya.apps.rhoe.desk.exporters.SaleLineExporter;
 import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.Sale;
 import com.elikya.apps.rhoe.desk.entity.SaleLine;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
+import com.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
 import com.elikya.apps.rhoe.desk.service.SaleLineService;
 import com.elikya.apps.rhoe.desk.service.SaleService;
-import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
  * @author Mafole Loemelah
  */
 @Component
-public class ReportsController implements Initializable, ValidationObserver {
+public class ReportsController implements Initializable, CRUDMaster {
 
     @FXML private Label title;
     @FXML private JFXButton close;
@@ -85,7 +85,7 @@ public class ReportsController implements Initializable, ValidationObserver {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ValidationObserverImpl.register(this);
+        CRUDMasterImpl.register(this);
         lang = ControlsHandler.getLanguage();
         currency = RhoeConfig.get().getProperty("currency");
         getSelectedIdsSales();
@@ -106,17 +106,13 @@ public class ReportsController implements Initializable, ValidationObserver {
     }
 
     @Override
-    public void processDeletionValidation() {
+    public void deleteRecord() {
         saleLineService.deleteAll(selectedLines);
         saleService.deleteFromIds(salesIds);
         lines.removeAll(selectedLines);
         getSelectedIdsSales();
         putItemsOnTable();
-        ValidationObserverImpl.processDeleteOnFirstRegistered();
     }
-
-    @Override
-    public void processUpdateValidation() {}
 
     @Autowired
     private void setSaleService(SaleService saleService) {
@@ -161,7 +157,7 @@ public class ReportsController implements Initializable, ValidationObserver {
 
     private void setCloseEventHandler() {
         close.setOnAction(event -> {
-            ValidationObserverImpl.unregister(this);
+            CRUDMasterImpl.unregister(this);
             Stages.close(event);
         });
     }

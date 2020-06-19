@@ -12,7 +12,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <!--
@@ -124,27 +123,6 @@
                                     </VBox>
                                     <Label fx:id="loginLabel" layoutX="10.0" layoutY="10.0" styleClass="header-label" text="Label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="450.0" />
                                     <JFXPasswordField fx:id="password" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="490.0" />
-                                    <Label fx:id="account" layoutX="20.0" layoutY="20.0" styleClass="header-label" text="Label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="560.0" />
-                                    <VBox layoutX="30.0" layoutY="583.0" prefWidth="271.0" spacing="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="600.0">
-                                       <children>
-                                          <JFXTextField fx:id="mailAddress" />
-                                       </children>
-                                    </VBox>
-                                    <Label fx:id="licenseTitle" layoutX="30.0" layoutY="30.0" styleClass="header-label" text="Label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="670.0" />
-                                    <HBox AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="710.0">
-                                       <children>
-                                          <JFXTextField fx:id="deadline" editable="false" prefWidth="230.0" />
-                                          <JFXButton fx:id="synchronize" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="37.0" prefWidth="23.0" style="-fx-background-color: transparent; -fx-background-radius: 30;" text=" ">
-                                             <graphic>
-                                                <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../icons/synchronize.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                          </JFXButton>
-                                       </children>
-                                    </HBox>
                                  </children>
                               </AnchorPane>
                            </content>

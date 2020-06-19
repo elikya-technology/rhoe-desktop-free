@@ -4,15 +4,15 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
-import com.elikya.apps.rhoe.desk.exporters.TaxExporter;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.entity.Tax;
+import com.elikya.apps.rhoe.desk.exporters.TaxExporter;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
+import com.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
 import com.elikya.apps.rhoe.desk.service.TaxService;
-import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.*;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
 import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
-import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -44,7 +44,7 @@ import java.util.ResourceBundle;
  * @author Mafole Loemelah
  */
 @Component
-public class TaxesController implements Initializable, ValidationObserver {
+public class TaxesController implements Initializable, CRUDMaster {
 
     @FXML private Label title;
     @FXML private JFXButton close;
@@ -75,7 +75,7 @@ public class TaxesController implements Initializable, ValidationObserver {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lang = ControlsHandler.getLanguage();
-        ValidationObserverImpl.register(this);
+        CRUDMasterImpl.register(this);
         TableViewOperation.setTableSelectionModel(taxesTable);
         TableViewOperation.handleSelection(taxesTable);
         ControlsHandler.keepFloatValues(costField);
@@ -128,14 +128,7 @@ public class TaxesController implements Initializable, ValidationObserver {
     }
 
     @Override
-    public void processUpdateValidation() {
-        updatableTax = taxesTable.getSelectionModel().getSelectedItem();
-        fillForm();
-        ControlsHandler.disableControls(taxesTable, searchText, true);
-    }
-
-    @Override
-    public void processDeletionValidation() {
+    public void deleteRecord() {
         Platform.runLater(() -> {
             List<Tax> items = taxesTable.getSelectionModel().getSelectedItems();
             taxService.deleteAll(items);
@@ -190,7 +183,7 @@ public class TaxesController implements Initializable, ValidationObserver {
     }
 
     private void setCloseEventHandler() {close.setOnAction(event -> {
-        ValidationObserverImpl.unregister(this);
+        CRUDMasterImpl.unregister(this);
         Stages.close(event);
     });}
     
@@ -271,8 +264,9 @@ public class TaxesController implements Initializable, ValidationObserver {
     
     private void setEditEventHandler() {
         _edit.setOnAction(event -> {
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.UPDATING);
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
+            updatableTax = taxesTable.getSelectionModel().getSelectedItem();
+            fillForm();
+            ControlsHandler.disableControls(taxesTable, searchText, true);
         });
     }
     

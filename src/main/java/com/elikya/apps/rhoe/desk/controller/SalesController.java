@@ -7,11 +7,14 @@ package com.elikya.apps.rhoe.desk.controller;
 import com.elikya.apps.rhoe.desk.chart.ChartsUtils.ComputeContext;
 import com.elikya.apps.rhoe.desk.chart.SalesCharter;
 import com.elikya.apps.rhoe.desk.chart.SalesCharter.ChartContext;
-import com.elikya.apps.rhoe.desk.exporters.SaleExporter;
 import com.elikya.apps.rhoe.desk.entity.Sale;
-import com.elikya.apps.rhoe.desk.service.SaleService;
+import com.elikya.apps.rhoe.desk.exporters.SaleExporter;
 import com.elikya.apps.rhoe.desk.observers.impl.*;
-import com.elikya.apps.rhoe.desk.observers.interfaces.*;
+import com.elikya.apps.rhoe.desk.observers.interfaces.CurrencyObserver;
+import com.elikya.apps.rhoe.desk.observers.interfaces.DecimalsObserver;
+import com.elikya.apps.rhoe.desk.observers.interfaces.LanguageObserver;
+import com.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
+import com.elikya.apps.rhoe.desk.service.SaleService;
 import com.elikya.apps.rhoe.desk.ui.*;
 import com.elikya.apps.rhoe.desk.util.*;
 import com.jfoenix.controls.JFXButton;
@@ -54,7 +57,7 @@ import java.util.stream.Stream;
  */
 @Component
 public class SalesController implements Initializable, LanguageObserver
-        , CurrencyObserver, DecimalsObserver, ValidationObserver, SaveUpdateObserver {
+        , CurrencyObserver, DecimalsObserver, CRUDMaster {
 
     @FXML private JFXButton add;
     @FXML private JFXComboBox<String> groupBy;
@@ -89,20 +92,17 @@ public class SalesController implements Initializable, LanguageObserver
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (LicenseListener.licenseIsValid()) {
-            computeContext = ComputeContext.PRICE;
-            LanguageObserverImpl.register(this);
-            CurrencyObserverImpl.register(this);
-            DecimalsObserverImpl.register(this);
-            SaveUpdateObserverImpl.register(this);
-            ValidationObserverImpl.register(this);
-            TableViewOperation.handleSelection(salesTable);
-            TableViewOperation.setTableSelectionModel(salesTable);
-            ControlsHandler.handleSearchZone(searchText, searchBtn);
-            setControlsLanguage();
-            setControlsTooltips();
-            initControls();
-        }
+        computeContext = ComputeContext.PRICE;
+        LanguageObserverImpl.register(this);
+        CurrencyObserverImpl.register(this);
+        DecimalsObserverImpl.register(this);
+        CRUDMasterImpl.register(this);
+        TableViewOperation.handleSelection(salesTable);
+        TableViewOperation.setTableSelectionModel(salesTable);
+        ControlsHandler.handleSearchZone(searchText, searchBtn);
+        setControlsLanguage();
+        setControlsTooltips();
+        initControls();
     }
     
     @Autowired
@@ -169,11 +169,7 @@ public class SalesController implements Initializable, LanguageObserver
     }
 
     @Override
-    public void processUpdateValidation() {
-    }
-
-    @Override
-    public void processDeletionValidation() {
+    public void deleteRecord() {
         Platform.runLater(() -> {
             List<Sale> items = salesTable.getSelectionModel().getSelectedItems();
             saleService.deleteAll(items);

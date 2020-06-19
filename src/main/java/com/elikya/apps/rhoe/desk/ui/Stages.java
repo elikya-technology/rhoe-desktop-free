@@ -113,7 +113,6 @@ public class Stages {
     public static void showNextStage() {
         Properties prop = RhoeConfig.get();
         if (prop.getProperty("language").trim().isEmpty()) showDialog(StagesPaths.LANGUAGE);
-        else if (prop.getProperty("mail_address").trim().isEmpty()) showDialog(StagesPaths.ACCOUNT);
         else if (prop.getProperty("enterprise").trim().isEmpty()) showDialog(StagesPaths.ENTERPRISE);
         else if (!prop.getProperty("password").trim().isEmpty()) showDialog(StagesPaths.LOGIN);
         else showMainApplication();

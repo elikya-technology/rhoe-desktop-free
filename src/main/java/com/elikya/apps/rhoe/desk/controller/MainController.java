@@ -7,10 +7,8 @@ package com.elikya.apps.rhoe.desk.controller;
 import com.elikya.apps.rhoe.desk.observers.impl.LanguageObserverImpl;
 import com.elikya.apps.rhoe.desk.observers.interfaces.LanguageObserver;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
-import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.application.Application;
@@ -57,12 +55,10 @@ public class MainController extends Application implements Initializable, Langua
         setFeedbackMouseEvent();
         setFaqMouseEvent();
         ControlsHandler.setDrawer(drawer);
-        if (LicenseListener.licenseIsValid()) {
-            LanguageObserverImpl.register(this);
-            Stages.setMainContainer(container);
-            updateLanguage();
-            Stages.showLargeStage(StagesPaths.SALES);
-        } else Notifier.notify(StagesPaths.WARNING_NOTIF, lang.getProperty("update_license"));
+        LanguageObserverImpl.register(this);
+        Stages.setMainContainer(container);
+        updateLanguage();
+        Stages.showLargeStage(StagesPaths.SALES);
     }
 
     @Override

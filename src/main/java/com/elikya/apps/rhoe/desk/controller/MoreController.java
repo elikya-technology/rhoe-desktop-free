@@ -5,18 +5,20 @@
 package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.configs.NumbersConfig;
-import com.elikya.apps.rhoe.desk.exporters.CategoryExporter;
-import com.elikya.apps.rhoe.desk.exporters.ProviderExporter;
+import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
 import com.elikya.apps.rhoe.desk.entity.Category;
 import com.elikya.apps.rhoe.desk.entity.Provider;
+import com.elikya.apps.rhoe.desk.exporters.CategoryExporter;
+import com.elikya.apps.rhoe.desk.exporters.ProviderExporter;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
+import com.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
 import com.elikya.apps.rhoe.desk.service.CategoryService;
 import com.elikya.apps.rhoe.desk.service.ProviderService;
-import com.elikya.apps.rhoe.desk.observers.impl.SaveUpdateObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
 import com.elikya.apps.rhoe.desk.ui.*;
-import com.elikya.apps.rhoe.desk.util.*;
-import com.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
+import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
+import com.elikya.apps.rhoe.desk.util.InputRegex;
+import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
+import com.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -49,7 +51,7 @@ import java.util.function.Function;
  * @author Mafole Loemelah
  */
 @Component
-public class MoreController implements Initializable, ValidationObserver {
+public class MoreController implements Initializable, CRUDMaster {
 
     @FXML private Label title;
     @FXML private JFXButton close;
@@ -111,12 +113,11 @@ public class MoreController implements Initializable, ValidationObserver {
     private String currency;
     private List<Provider> providersList;
     private List<Category> categoriesList;
-    private TargetedItem target;
     private String optionalText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ValidationObserverImpl.register(this);
+        CRUDMasterImpl.register(this);
         currency = ApplicationCurrency.getActualCurrency();
         setLanguage();
         initProviders();
@@ -125,29 +126,11 @@ public class MoreController implements Initializable, ValidationObserver {
     }
 
     @Override
-    public void processDeletionValidation() {
+    public void deleteRecord() {
         Platform.runLater(() -> {
             if (!deletableCategories.isEmpty()) deleteCategories();
             if (!deletableProviders.isEmpty()) deleteProviders();
         });
-    }
-
-    @Override
-    public void processUpdateValidation() {
-        if (target.equals(TargetedItem.CATEGORY)) handleChangingCategory();
-        else handleChangingProvider();
-    }
-
-    private void handleChangingProvider() {
-        updatableProvider = (Provider) selectedItems.apply(providersTable).get(0);
-        fillProviderForm(updatableProvider);
-        ControlsHandler.disableControls(providersTable, providerSearchText, true);
-    }
-
-    private void handleChangingCategory() {
-        updatableCategory = (Category) selectedItems.apply(categoriesTable).get(0);
-        fillCategoryForm(updatableCategory);
-        ControlsHandler.disableControls(categoriesTable, categorySearchText, true);
     }
 
     @Autowired
@@ -175,7 +158,7 @@ public class MoreController implements Initializable, ValidationObserver {
         putProvidersInTable();
         setNameEventHandler(providerNameField, providerSave);
         setProviderSaveEventHandler();
-        setEditEventHandler(TargetedItem.PROVIDER, _providerEdit);
+        setProviderEditEventHandler();
         addFormContextMenu(providerForm, TargetedItem.PROVIDER);
         TableViewOperation.handleSelection(providersTable);
         TableViewOperation.setTableSelectionModel(providersTable);
@@ -205,7 +188,7 @@ public class MoreController implements Initializable, ValidationObserver {
         setCategorySaveEventHandler();
         setNameEventHandler(categoryNameField, categorySave);
         TableViewOperation.handleSelection(categoriesTable);
-        setEditEventHandler(TargetedItem.CATEGORY, _categoryEdit);
+        setCategoryEditEventHandler();
         setCategoryDeleteEventHandler();
         setCategoryNameProperty();
         setItemsProductsEventHandler(TargetedItem.CATEGORY, _categoryProducts);
@@ -276,7 +259,7 @@ public class MoreController implements Initializable, ValidationObserver {
             nullUpdatableCategory();
             nullUpdatableProvider();
 
-            ValidationObserverImpl.unregister(this);
+            CRUDMasterImpl.unregister(this);
 
             Stages.close(event);
         });
@@ -398,7 +381,7 @@ public class MoreController implements Initializable, ValidationObserver {
 
     private void refreshCategoryOnProducts() {
         if (updatableCategory.getProductsNumber() > 0)
-            SaveUpdateObserverImpl.updateFirstRegistered();
+            CRUDMasterImpl.updateFirstRegistered();
     }
 
     private void setProviderSaveEventHandler() {
@@ -502,11 +485,19 @@ public class MoreController implements Initializable, ValidationObserver {
         Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("category_deleted"));
     }
 
-    private void setEditEventHandler(TargetedItem _target, MenuItem item) {
-        item.setOnAction(event -> {
-            target = _target;
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.UPDATING);
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
+    private void setProviderEditEventHandler() {
+        _providerEdit.setOnAction(event -> {
+            updatableProvider = (Provider) selectedItems.apply(providersTable).get(0);
+            fillProviderForm(updatableProvider);
+            ControlsHandler.disableControls(providersTable, providerSearchText, true);
+        });
+    }
+
+    private void setCategoryEditEventHandler() {
+        _categoryEdit.setOnAction(event -> {
+            updatableCategory = (Category) selectedItems.apply(categoriesTable).get(0);
+            fillCategoryForm(updatableCategory);
+            ControlsHandler.disableControls(categoriesTable, categorySearchText, true);
         });
     }
 

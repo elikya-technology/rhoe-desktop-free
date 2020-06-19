@@ -6,16 +6,15 @@ package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.chart.ProductsCharter;
 import com.elikya.apps.rhoe.desk.chart.ProductsCharter.ChartContext;
-import com.elikya.apps.rhoe.desk.exporters.ProductExporter;
 import com.elikya.apps.rhoe.desk.entity.Category;
 import com.elikya.apps.rhoe.desk.entity.Product;
-import com.elikya.apps.rhoe.desk.service.ProductService;
-import com.elikya.apps.rhoe.desk.service.SaleLineService;
+import com.elikya.apps.rhoe.desk.exporters.ProductExporter;
 import com.elikya.apps.rhoe.desk.observers.impl.*;
 import com.elikya.apps.rhoe.desk.observers.interfaces.*;
+import com.elikya.apps.rhoe.desk.service.ProductService;
+import com.elikya.apps.rhoe.desk.service.SaleLineService;
 import com.elikya.apps.rhoe.desk.ui.*;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
-import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.elikya.apps.rhoe.desk.util.NumbersFormatter;
 import com.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.jfoenix.controls.JFXButton;
@@ -53,7 +52,7 @@ import java.util.stream.Collectors;
  */
 @Component
 public class ProductsController implements Initializable, LanguageObserver
-        , CurrencyObserver, DecimalsObserver, ValidationObserver, SaveUpdateObserver {
+        , CurrencyObserver, DecimalsObserver, CRUDMaster {
 
     @FXML private CustomTextField searchText;
     @FXML private TableColumn<Product, String> name;
@@ -89,21 +88,18 @@ public class ProductsController implements Initializable, LanguageObserver
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (LicenseListener.licenseIsValid()) {
-            LanguageObserverImpl.register(this);
-            CurrencyObserverImpl.register(this);
-            DecimalsObserverImpl.register(this);
-            ValidationObserverImpl.register(this);
-            SaveUpdateObserverImpl.register(this);
-            ControlsHandler.handleSearchZone(searchText, searchBtn);
-            queryProducts();
-            TableViewOperation.setTableSelectionModel(productsTable);
-            TableViewOperation.handleSelection(productsTable);
-            updateLanguage();
-            setTableCellsValueFactory();
-            intiMethods();
-            setTaxedPriceCellFactory();
-        }
+        LanguageObserverImpl.register(this);
+        CurrencyObserverImpl.register(this);
+        DecimalsObserverImpl.register(this);
+        CRUDMasterImpl.register(this);
+        ControlsHandler.handleSearchZone(searchText, searchBtn);
+        queryProducts();
+        TableViewOperation.setTableSelectionModel(productsTable);
+        TableViewOperation.handleSelection(productsTable);
+        updateLanguage();
+        setTableCellsValueFactory();
+        intiMethods();
+        setTaxedPriceCellFactory();
     }
     
     @Autowired
@@ -172,28 +168,7 @@ public class ProductsController implements Initializable, LanguageObserver
     }
 
     @Override
-    public void processUpdateValidation() {
-        Product item = productsTable.getSelectionModel().getSelectedItem();
-        ProductHandlerController.setProductId(item.getId());
-        Stages.showResponsiveDialog(StagesPaths.PRODUCT_HANDLER, StageSize.MEDIUM);
-    }
-
-    @Override
-    public void processStockingUp() {
-        Product selected = productsTable.getSelectionModel().getSelectedItem();
-        StockUpController.setProduct(selected);
-        Stages.showDialog(StagesPaths.STOCK_UP);
-    }
-
-    @Override
-    public void processWithdraw() {
-        Product selected  = productsTable.getSelectionModel().getSelectedItem();
-        WithdrawController.setProduct(selected);
-        Stages.showDialog(StagesPaths.WITHDRAW);
-    }
-
-    @Override
-    public void processDeletionValidation() {
+    public void deleteRecord() {
         Platform.runLater(() -> {
             deletableItems = productsTable.getSelectionModel().getSelectedItems();
             productService.deleteAll(deletableItems);
@@ -252,15 +227,17 @@ public class ProductsController implements Initializable, LanguageObserver
 
     private void setStockUpEventHandler() {
         _stockUp.setOnAction(event -> {
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.STOCK_UP);
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
+            Product selected = productsTable.getSelectionModel().getSelectedItem();
+            StockUpController.setProduct(selected);
+            Stages.showDialog(StagesPaths.STOCK_UP);
         });
     }
 
     private void setWithdrawEventHandler() {
         _withdraw.setOnAction(event -> {
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.WITHDRAW);
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
+            Product selected  = productsTable.getSelectionModel().getSelectedItem();
+            WithdrawController.setProduct(selected);
+            Stages.showDialog(StagesPaths.WITHDRAW);
         });
     }
     
@@ -297,8 +274,9 @@ public class ProductsController implements Initializable, LanguageObserver
     
     private void setEditEventHandler() {
         _edit.setOnAction(event -> {
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.UPDATING);
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
+            Product item = productsTable.getSelectionModel().getSelectedItem();
+            ProductHandlerController.setProductId(item.getId());
+            Stages.showResponsiveDialog(StagesPaths.PRODUCT_HANDLER, StageSize.MEDIUM);
         });
     }
     

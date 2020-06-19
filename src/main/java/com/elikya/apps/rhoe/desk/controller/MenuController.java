@@ -4,14 +4,12 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.observers.impl.DecimalsObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.impl.SaveUpdateObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
-import com.elikya.apps.rhoe.desk.util.LicenseListener;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -48,10 +46,8 @@ public class MenuController implements Initializable {
         lang = ControlsHandler.getLanguage();
         setLanguage();
         ControlsHandler.handlePicture(picture);
-        if (LicenseListener.licenseIsValid()) {
-            setProductsEventHandler();
-            setSellsEventHandler();
-        }
+        setProductsEventHandler();
+        setSellsEventHandler();
         setAboutEventHandler();
         setEnterpriseInfos();
         setOptionsEventHandler();
@@ -86,8 +82,7 @@ public class MenuController implements Initializable {
     }
 
     private void unregisterObservers() {
-        ValidationObserverImpl.unregisterAll();
-        SaveUpdateObserverImpl.unregisterAll();
+        CRUDMasterImpl.unregisterAll();
         DecimalsObserverImpl.unregister();
     }
 

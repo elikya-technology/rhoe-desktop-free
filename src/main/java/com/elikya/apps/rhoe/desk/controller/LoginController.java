@@ -4,18 +4,15 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
-import com.elikya.apps.rhoe.desk.observers.impl.ValidationObserverImpl;
-import com.elikya.apps.rhoe.desk.observers.interfaces.ValidationObserver;
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
-import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
@@ -30,18 +27,12 @@ import java.util.ResourceBundle;
  * @author Mafole Loemelah
  */
 @Component
-public class LoginController implements Initializable, ValidationObserver {
+public class LoginController implements Initializable {
 
-    @FXML
-    private JFXPasswordField password;
-    @FXML
-    private JFXButton close;
-    @FXML
-    private JFXButton submit;
-    @FXML
-    private Label login;
-    @FXML
-    private Hyperlink forgottenPassword;
+    @FXML private JFXPasswordField password;
+    @FXML private JFXButton close;
+    @FXML private JFXButton submit;
+    @FXML private Label login;
 
     private String appPassword;
     private Properties lang;
@@ -49,13 +40,11 @@ public class LoginController implements Initializable, ValidationObserver {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         appPassword = RhoeConfig.get().getProperty("password");
-        ValidationObserverImpl.register(this);
         lang = ControlsHandler.getLanguage();
         setLanguage();
         setCloseEventHandler();
         setSubmitEventHandler();
         setPasswordEventHandler();
-        setForgottenPasswordEventHandler();
     }
 
     private void setCloseEventHandler() {
@@ -66,7 +55,6 @@ public class LoginController implements Initializable, ValidationObserver {
         login.setText(lang.getProperty("log_in"));
         password.setPromptText(lang.getProperty("password"));
         submit.setText(lang.getProperty("next"));
-        forgottenPassword.setText(lang.getProperty("password_forgotten"));
     }
 
     private void setSubmitEventHandler() {
@@ -91,18 +79,5 @@ public class LoginController implements Initializable, ValidationObserver {
             if (newValue.isEmpty()) submit.setDisable(true);
             else submit.setDisable(false);
         });
-    }
-
-    private void setForgottenPasswordEventHandler() {
-        forgottenPassword.setOnAction(event -> {
-            Stages.close(event);
-            CodeVerifierController.setContext(CodeVerifierController.VerificationContext.UPDATING);
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
-        });
-    }
-
-    @Override
-    public void processUpdateValidation() {
-        closeCurrentLayout();
     }
 }

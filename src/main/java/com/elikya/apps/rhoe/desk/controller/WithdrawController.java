@@ -8,7 +8,7 @@ import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.ProductLog;
 import com.elikya.apps.rhoe.desk.service.ProductLogService;
 import com.elikya.apps.rhoe.desk.service.ProductService;
-import com.elikya.apps.rhoe.desk.observers.impl.SaveUpdateObserverImpl;
+import com.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
@@ -124,7 +124,7 @@ public class WithdrawController implements Initializable {
             if (newStockIsGreaterThanMinQty()) {
                 updateProduct();
                 logProduct();
-                SaveUpdateObserverImpl.executeUpdateRecord();
+                CRUDMasterImpl.executeUpdateRecord();
                 Stages.close(event);
             } else
                 Notifier.notify(StagesPaths.WARNING_NOTIF, lang
