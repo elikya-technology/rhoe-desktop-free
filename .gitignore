@@ -10,7 +10,6 @@ replay_pid5475.log
 hs_err_pid12111.log
 pr
 cf
-pr
 !**/src/main/**
 !**/src/test/**
 
