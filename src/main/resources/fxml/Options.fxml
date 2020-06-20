@@ -95,7 +95,7 @@
                 </Tab>
                   <Tab fx:id="myOcculus">
                     <content>
-                        <ScrollPane fitToWidth="true">
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
                            <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="770.0" prefWidth="491.0">
                                  <children>

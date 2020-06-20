@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -34,10 +33,6 @@
          </image>
       </ImageView>
       <JFXPasswordField fx:id="password" focusColor="#009688" labelFloat="true" layoutX="75.0" layoutY="240.0" promptText="Password" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="250.0" />
-      <JFXButton fx:id="submit" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" disable="true" layoutX="210.0" layoutY="350.0" ripplerFill="WHITE" styleClass="button-filled" text="Log In" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
+      <JFXButton fx:id="submit" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" disable="true" layoutX="210.0" layoutY="350.0" ripplerFill="WHITE" styleClass="button-filled" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0" />
    </children>
 </AnchorPane>

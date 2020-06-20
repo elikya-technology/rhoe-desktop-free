@@ -113,7 +113,6 @@ public class MoreController implements Initializable, CRUDMaster {
     private String currency;
     private List<Provider> providersList;
     private List<Category> categoriesList;
-    private String optionalText;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -145,7 +144,6 @@ public class MoreController implements Initializable, CRUDMaster {
 
     private void setLanguage() {
         lang = ControlsHandler.getLanguage();
-        optionalText = " (" + lang.getProperty("optional") + ")";
         title.setText(lang.getProperty("more"));
         setProviderLanguage();
         setCategoryLanguage();
@@ -212,14 +210,14 @@ public class MoreController implements Initializable, CRUDMaster {
         providerNameField.setPromptText(lang.getProperty("name"));
         providerName.setText(lang.getProperty("name"));
         providerAddressField.setPromptText(lang.getProperty("address")
-                + " : " + lang.getProperty("address_pattern") + optionalText);
+                + " : " + lang.getProperty("address_pattern"));
         providerAddress.setText(lang.getProperty("address"));
         providerPhoneField.setPromptText(lang.getProperty("phone_number")
-                + " : " + lang.getProperty("phone_number_pattern") + optionalText);
+                + " : " + lang.getProperty("phone_number_pattern"));
         providerPhone.setText(lang.getProperty("phone_number"));
-        providerEmailField.setPromptText(lang.getProperty("email") + optionalText);
+        providerEmailField.setPromptText(lang.getProperty("email"));
         providerEmail.setText(lang.getProperty("email"));
-        providerDescriptionArea.setPromptText(lang.getProperty("description") + optionalText);
+        providerDescriptionArea.setPromptText(lang.getProperty("description"));
         providerDescription.setText(lang.getProperty("description"));
         providerSave.setText(lang.getProperty("save"));
         providerDelete.setText(lang.getProperty("delete"));
@@ -235,7 +233,7 @@ public class MoreController implements Initializable, CRUDMaster {
     private void setCategoryLanguage() {
         categoryNameField.setPromptText(lang.getProperty("name"));
         categoryNumberField.setPromptText(lang.getProperty("category_number"));
-        categoryDescriptionArea.setPromptText(lang.getProperty("description") + optionalText);
+        categoryDescriptionArea.setPromptText(lang.getProperty("description"));
         categorySave.setText(lang.getProperty("save"));
         categoryName.setText(lang.getProperty("name"));
         categoryNumber.setText(lang.getProperty("category_number"));
