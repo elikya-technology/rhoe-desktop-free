@@ -256,9 +256,7 @@ public class MoreController implements Initializable, CRUDMaster {
         close.setOnAction((event) -> {
             nullUpdatableCategory();
             nullUpdatableProvider();
-
             CRUDMasterImpl.unregister(this);
-
             Stages.close(event);
         });
     }
