@@ -64,7 +64,6 @@ public class DeletionDialogController implements Initializable {
         yes.setOnAction(event -> {
             Stages.close(event);
             CRUDMasterImpl.executeDeleteRecord();
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
         });
     }
 

@@ -374,7 +374,6 @@ public class NewSaleController implements Initializable, ProductQtyObserver {
             List<SaleLine> items = salesTable.getSelectionModel().getSelectedItems();
             salesTable.getItems().removeAll(items);
             salesTable.refresh();
-            Stages.showDialog(StagesPaths.CODE_VERIFIER);
         });
     }
 

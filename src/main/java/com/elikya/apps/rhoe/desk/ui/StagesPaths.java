@@ -11,14 +11,11 @@ package com.elikya.apps.rhoe.desk.ui;
 public enum StagesPaths {
     
     ABOUT("/fxml/About.fxml"),
-    ACCOUNT("/fxml/Account.fxml"),
-    CODE_VERIFIER("/fxml/CodeVerifier.fxml"),
     DELETION_DIALOG("/fxml/DeletionDialog.fxml"),
     ERROR_NOTIF("/fxml/ErrorNotif.fxml"),
     ENTERPRISE("/fxml/Enterprise.fxml"),
     EXIT_APPLICATION("/fxml/ExitApplication.fxml"),
     FEEDBACK("/fxml/Feedback.fxml"),
-    HELP("/fxml/Help.fxml"),
     INFO_NOTIF("/fxml/InfoNotif.fxml"),
     ITEMS_PRODUCT("/fxml/ItemsProducts.fxml"),
     LANGUAGE("/fxml/Language.fxml"),
@@ -27,7 +24,6 @@ public enum StagesPaths {
     MAIN("/fxml/Main.fxml"),
     MENU("/fxml/Menu.fxml"),
     MORE("/fxml/More.fxml"),
-    NEW_PASSWORD("/fxml/Password.fxml"),
     PRODUCT_HANDLER("/fxml/ProductHandler.fxml"),
     NEW_SALE("/fxml/NewSale.fxml"),
     OPTIONS("/fxml/Options.fxml"),

@@ -208,6 +208,7 @@ public class OptionsController implements Initializable {
                 RhoeConfig.write(configs);
                 Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("settings_saved"));
                 notifyChangedOption();
+                Stages.close(event);
             }
         });
     }

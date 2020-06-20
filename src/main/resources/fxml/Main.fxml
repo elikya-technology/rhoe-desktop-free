@@ -48,6 +48,7 @@
          <children>
             <Label fx:id="feedback" alignment="CENTER" prefHeight="20.0" prefWidth="90.0" styleClass="footer-label" text="Feedback" />
             <Label fx:id="faq" alignment="CENTER" prefHeight="20.0" prefWidth="60.0" styleClass="footer-label" text="FAQ" />
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="90.0" styleClass="footer-label" text="Free Version" />
          </children>
          <padding>
             <Insets right="15.0" />
