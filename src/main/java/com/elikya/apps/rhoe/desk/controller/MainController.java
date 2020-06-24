@@ -26,8 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -93,8 +91,7 @@ public class MainController extends Application implements Initializable, Langua
                     drawer.setPrefWidth(Screen.getPrimary().getVisualBounds().getWidth());
                 }
             } catch (IOException exception) {
-                Logger.getLogger(getClass().getName()).log(Level.SEVERE,
-                        "DRAWER NOT SHOWN", exception);
+
             }
             event.consume();
         });
@@ -111,7 +108,7 @@ public class MainController extends Application implements Initializable, Langua
     private void setFaqMouseEvent() {
         faq.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
-                getHostServices().showDocument("http://www.elikyarhoe.com/faq");
+                getHostServices().showDocument("http://rhoe.elikya.tech/faq");
             }
         });
     }

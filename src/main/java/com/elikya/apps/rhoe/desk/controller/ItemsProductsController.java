@@ -167,13 +167,13 @@ public class ItemsProductsController implements Initializable {
     }
 
     private void filterProducts(FilteredList<Product> products, String text) {
-        Platform.runLater(() -> products.setPredicate(prod -> prod.getBarCode().contains(text)
-                || prod.getLabel().toLowerCase().contains(text)
+        products.setPredicate(prod -> prod.getLabel().toLowerCase().contains(text)
                 || prod.getNumber().toLowerCase().contains(text)
                 || prod.getSerialNumber().toLowerCase().contains(text)
-                || String.valueOf(prod.getUnitPrice()).contains(text)
-                || isCategory() ? prod.getProvider().getLabel().toLowerCase().contains(text)
-                : prod.getCategory().getLabel().toLowerCase().contains(text)));
+                || String.valueOf(prod.getConvertedUnitPrice()).contains(text)
+                || String.valueOf(prod.getStockQuantity()).contains(text)
+                || prod.getProvider().getLabel().toLowerCase().contains(text)
+                || prod.getCategory().getLabel().toLowerCase().contains(text));
     }
 
     private void setExcelEventHandler() {

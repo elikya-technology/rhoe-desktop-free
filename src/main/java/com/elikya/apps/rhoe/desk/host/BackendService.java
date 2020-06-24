@@ -34,28 +34,28 @@ public class BackendService {
         return Optional.empty();
     }
 
-    public static Optional<Subscriber> requestSaveAccount(Subscriber subscriber) {
-        try {
-            WebTarget target = getTarget();
-            Response response = target.path("/subscribers/save_one").request().post(Entity.json(subscriber));
-            return Optional.ofNullable(response.readEntity(Subscriber.class));
-        } catch (ProcessingException e) {
-            Properties lang = ControlsHandler.getLanguage();
-            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
-        }
-        return Optional.empty();
-    }
+//    public static Optional<Subscriber> requestSaveAccount(Subscriber subscriber) {
+//        try {
+//            WebTarget target = getTarget();
+//            Response response = target.path("/subscribers/save_one").request().post(Entity.json(subscriber));
+//            return Optional.ofNullable(response.readEntity(Subscriber.class));
+//        } catch (ProcessingException e) {
+//            Properties lang = ControlsHandler.getLanguage();
+//            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
+//        }
+//        return Optional.empty();
+//    }
 
-    public static void requestUpdateAccount(Subscriber subscriber) {
-        try {
-            WebTarget target = getTarget();
-            Response response = target.path("/subscribers/update_one").request().put(Entity.json(subscriber));
-            response.readEntity(Subscriber.class);
-        } catch (ProcessingException e) {
-            Properties lang = ControlsHandler.getLanguage();
-            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
-        }
-    }
+//    public static void requestUpdateAccount(Subscriber subscriber) {
+//        try {
+//            WebTarget target = getTarget();
+//            Response response = target.path("/subscribers/update_one").request().put(Entity.json(subscriber));
+//            response.readEntity(Subscriber.class);
+//        } catch (ProcessingException e) {
+//            Properties lang = ControlsHandler.getLanguage();
+//            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
+//        }
+//    }
 
     public static Optional<Boolean> emailExists(String email) {
         try {

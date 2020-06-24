@@ -67,7 +67,7 @@ public class RhoeConfig {
     private static void initProperties() {
         Properties properties = new Properties();
         properties.put("password", "");
-        properties.put("website", "http://www.rhoe.com/");
+        properties.put("website", "http://rhoe.elikya.tech");
         properties.put("address", "");
         properties.put("version", "1.0");
         properties.put("currency", "$");
@@ -84,7 +84,6 @@ public class RhoeConfig {
         properties.put("advanced_currency_features", "false");
         properties.put("enterprise", "");
         properties.put("decimals", "2");
-        properties.put("subs_key", "");
         properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
         write(properties);
     }
