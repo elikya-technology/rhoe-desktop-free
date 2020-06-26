@@ -4,20 +4,47 @@
 
 package com.elikya.apps.rhoe.desk.host;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 
-@Builder @Data
-@NoArgsConstructor @AllArgsConstructor
+@ToString
 public class Computer implements Serializable {
 
     private String osName;
     private String osVersion;
     private String osArch;
     private String ipAddress;
+
+    private static Computer computer;
+
+    private Computer() {
+        osName = System.getProperty("os.name");
+        osVersion = System.getProperty("os.version");
+        osArch = System.getProperty("os.arch");
+        ipAddress = HostPublicIpAddressReader.read();
+    }
+
+    public String getOsName() {
+        return osName;
+    }
+
+    public String getOsVersion() {
+        return osVersion;
+    }
+
+    public String getOsArch() {
+        return osArch;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public static Computer getInstance() {
+        if (computer == null)
+            computer = new Computer();
+        return computer;
+    }
 
 }

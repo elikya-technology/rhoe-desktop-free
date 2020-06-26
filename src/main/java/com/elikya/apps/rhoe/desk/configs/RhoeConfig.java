@@ -7,6 +7,7 @@ package com.elikya.apps.rhoe.desk.configs;
 import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
+import javafx.application.Platform;
 
 import java.io.*;
 import java.util.Properties;
@@ -19,8 +20,8 @@ import java.util.logging.Logger;
  */
 public class RhoeConfig {
 
-    private static final String CONFIGS_PATH = "cf/rhoe.properties";
     private static Properties configs;
+    private static final String CONFIGS_PATH = "cf/rhoe.properties";
 
     public static void load() {
         if (configs == null) {
@@ -30,12 +31,11 @@ public class RhoeConfig {
                 configs = ConfigsEncryptor.decryptProperties(properties);
                 ConfigsValidator.exitOnUnknownApplicationConfig(configs);
             } catch (IOException ex) {
-                Notifier.notify(StagesPaths.ERROR_NOTIF, "COULD NOT LOAD APPLICATION CONFIGS");
+                Notifier.notify(StagesPaths.ERROR_NOTIF, "Could not load configurations");
+                Platform.exit();
             }
         }
     }
-
-
 
     public static Properties get() {
         return configs;
@@ -46,7 +46,7 @@ public class RhoeConfig {
             Properties encrypted = ConfigsEncryptor.encryptProperties(properties);
             encrypted.store(output, null);
         } catch (IOException ex) {
-            Logger.getLogger(RhoeConfig.class.getName()).log(Level.SEVERE, null, ex);
+            Notifier.notify(StagesPaths.ERROR_NOTIF, "Could not override configurations");
         }
     }
 
@@ -60,7 +60,7 @@ public class RhoeConfig {
                     initProperties();
             }
         } catch (IOException exception) {
-            exception.printStackTrace();
+            Notifier.notify(StagesPaths.ERROR_NOTIF, "Could not create configurations folder");
         }
     }
 
@@ -85,6 +85,7 @@ public class RhoeConfig {
         properties.put("enterprise", "");
         properties.put("decimals", "2");
         properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
+        properties.put("temp_file_path", "");
         write(properties);
     }
 

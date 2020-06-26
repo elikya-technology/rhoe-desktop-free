@@ -37,4 +37,14 @@ public class ConfigsEncryptor {
         return decryptedProperties;
     }
 
+    public static String encryptString(String string) {
+        StandardPBEStringEncryptor encryptor = getStringEncryptor();
+        return encryptor.encrypt(string);
+    }
+
+    public static String decryptString(String string) {
+        StandardPBEStringEncryptor encryptor = getStringEncryptor();
+        return encryptor.decrypt(string);
+    }
+
 }

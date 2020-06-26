@@ -59,11 +59,11 @@ public class FeedbackController implements Initializable {
             String email = RhoeConfig.get().getProperty("mail_address");
             Feedback feedback = Feedback.builder().content(content.getText())
                     .email(email).subject(subject.getText()).name("desktop-user").build();
-            boolean submitted = BackendService.requestSubmitFeedback(feedback);
-            if (submitted) {
-                Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("feedback_submitted"));
-                Stages.close(event);
-            }
+//            boolean submitted = BackendService.requestSubmitFeedback(feedback);
+//            if (submitted) {
+//                Notifier.notify(StagesPaths.SUCCESS_NOTIF, lang.getProperty("feedback_submitted"));
+//                Stages.close(event);
+//            }
         });
     }
 

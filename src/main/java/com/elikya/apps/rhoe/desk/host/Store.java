@@ -4,15 +4,13 @@
 
 package com.elikya.apps.rhoe.desk.host;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Builder @Data
+@Builder @Data @ToString
 @NoArgsConstructor @AllArgsConstructor
 public class Store {
 
+    private String uuid;
     private String name;
     private String about;
     private Computer computer;
