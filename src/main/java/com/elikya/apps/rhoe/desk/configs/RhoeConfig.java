@@ -4,15 +4,13 @@
 
 package com.elikya.apps.rhoe.desk.configs;
 
-import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.encoding.InternalId;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import javafx.application.Platform;
 
 import java.io.*;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -84,7 +82,7 @@ public class RhoeConfig {
         properties.put("advanced_currency_features", "false");
         properties.put("enterprise", "");
         properties.put("decimals", "2");
-        properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
+        properties.put("internal_id", InternalId.get());
         properties.put("temp_file_path", "");
         write(properties);
     }

@@ -4,7 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.configs;
 
-import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.encoding.InternalId;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.iv.RandomIvGenerator;
 import org.jasypt.properties.EncryptableProperties;
@@ -15,7 +15,7 @@ public class ConfigsEncryptor {
 
     public static StandardPBEStringEncryptor getStringEncryptor() {
         StandardPBEStringEncryptor stringEncryptor = new StandardPBEStringEncryptor();
-        stringEncryptor.setPassword(CriticalDataEncoder.encodeHomeDirectory());
+        stringEncryptor.setPassword(InternalId.get());
         stringEncryptor.setAlgorithm("PBEWithHMACSHA512AndAES_256");
         stringEncryptor.setIvGenerator(new RandomIvGenerator());
         return stringEncryptor;

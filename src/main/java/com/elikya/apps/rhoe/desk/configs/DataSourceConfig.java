@@ -4,13 +4,12 @@
 
 package com.elikya.apps.rhoe.desk.configs;
 
-import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.encoding.InternalId;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-import java.time.LocalDateTime;
 
 @Configuration
 public class DataSourceConfig {
@@ -21,7 +20,7 @@ public class DataSourceConfig {
         dataSourceBuilder.driverClassName("org.h2.Driver");
         dataSourceBuilder.url("jdbc:h2:file:./pr/rhoe_db=");
         dataSourceBuilder.username("rhoe-desk");
-        dataSourceBuilder.password(CriticalDataEncoder.encodeHomeDirectory());
+        dataSourceBuilder.password(InternalId.get());
         return dataSourceBuilder.build();
     }
 

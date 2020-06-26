@@ -4,7 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.configs;
 
-import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.encoding.InternalId;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import javafx.application.Platform;
@@ -15,13 +15,13 @@ public class ConfigsValidator {
 
     public static void exitOnUnknownApplicationConfig(Properties configs) {
         try {
-            if (!configs.getProperty("host_id").equals(CriticalDataEncoder.encodeHomeDirectory())) {
-                Notifier.notify(StagesPaths.ERROR_NOTIF, "UNKNOWN APPLICATION CONFIGS");
+            if (!configs.getProperty("internal_id").equals(InternalId.get())) {
+                Notifier.notify(StagesPaths.ERROR_NOTIF, "Unknowns application configuration");
                 Thread.sleep(4000);
                 Platform.exit();
             }
         } catch (InterruptedException e) {
-            Notifier.notify(StagesPaths.ERROR_NOTIF, "COULD NOT LOAD APPLICATION CONFIGS");
+            Notifier.notify(StagesPaths.ERROR_NOTIF, "Could not load application configuration");
         }
     }
 

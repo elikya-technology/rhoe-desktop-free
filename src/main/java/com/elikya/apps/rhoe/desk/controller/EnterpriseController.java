@@ -90,5 +90,6 @@ public class EnterpriseController implements Initializable {
         config.replace("enterprise", store.getName());
         config.replace("business_words", store.getAbout());
         RhoeConfig.write(config);
+
     }
 }

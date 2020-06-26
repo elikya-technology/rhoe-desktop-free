@@ -4,7 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.configs;
 
-import com.elikya.apps.rhoe.desk.encoding.CriticalDataEncoder;
+import com.elikya.apps.rhoe.desk.encoding.InternalId;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 
@@ -96,7 +96,7 @@ public class NumbersConfig {
         properties.put("sales", "1");
         properties.put("categories", "1");
         properties.put("products", "1");
-        properties.put("host_id", CriticalDataEncoder.encodeHomeDirectory());
+        properties.put("internal_id", InternalId.get());
         write(properties);
     }
 
