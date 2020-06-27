@@ -4,7 +4,6 @@
 
 package com.elikya.apps.rhoe.desk.host;
 
-import com.elikya.apps.rhoe.desk.RhoeDesktopApplication;
 import com.elikya.apps.rhoe.desk.configs.ConfigsEncryptor;
 import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 
@@ -40,6 +39,16 @@ public class HostId {
             e.printStackTrace();
         }
         return ConfigsEncryptor.decryptString(uuid.toString());
+    }
+
+    public static boolean uuidFileExists() {
+        String filePath = RhoeConfig.get().getProperty("temp_file_path");
+        if (filePath.isEmpty()) {
+            return false;
+        } else {
+            File file = new File(filePath);
+            return file.exists();
+        }
     }
 
 }

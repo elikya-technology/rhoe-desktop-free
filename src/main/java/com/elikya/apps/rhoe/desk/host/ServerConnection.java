@@ -50,9 +50,19 @@ public class ServerConnection {
         }
     }
 
-    public String submit(Store store) {
+    public String saveStore(Store store) {
         if (isConnected()) {
             Response response = target.path("stores").request().post(Entity.json(store));
+            return response.readEntity(String.class);
+        } else {
+            Notifier.notify(StagesPaths.ERROR_NOTIF, ControlsHandler.getLanguage().getProperty("server_error"));
+            return "";
+        }
+    }
+
+    public String updateStore(Store store) {
+        if (isConnected()) {
+            Response response = target.path("stores").request().put(Entity.json(store));
             return response.readEntity(String.class);
         } else {
             Notifier.notify(StagesPaths.ERROR_NOTIF, ControlsHandler.getLanguage().getProperty("server_error"));

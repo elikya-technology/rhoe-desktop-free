@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.host.Computer;
 import com.elikya.apps.rhoe.desk.host.HostId;
 import com.elikya.apps.rhoe.desk.host.ServerConnection;
@@ -11,18 +12,17 @@ import com.elikya.apps.rhoe.desk.host.Store;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
-import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import java.net.URL;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -37,6 +37,7 @@ public class EnterpriseController implements Initializable {
     @FXML private JFXTextField name;
     @FXML private JFXTextField slogan;
     @FXML private JFXButton save;
+
     private Properties lang;
 
     @Override
@@ -70,26 +71,42 @@ public class EnterpriseController implements Initializable {
         save.setOnAction(event -> {
             ServerConnection connection = ServerConnection.getInstance();
             if (connection.isConnected()) {
-                Store store = Store.builder().about(slogan.getText()).name(name.getText())
-                        .computer(Computer.getInstance()).build();
-                store.setUuid(connection.submit(store));
-                if (store.getUuid().isEmpty()) {
-                    Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("enterprise_data_error"));
-                } else {
-                    Stages.close(event);
-                    writeEnterpriseConfigs(store);
-                    Stages.showNextStage();
-                }
+                Store store = submitStore(connection);
+                handleSubmittedStore(store);
+
+                Stages.close(event);
+                Stages.showNextStage();
             } else Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
         });
     }
 
-    private void writeEnterpriseConfigs(Store store) {
-        HostId.writeId(store.getUuid());
+    private Store submitStore(ServerConnection connection) {
+        Store store = Store.builder().about(slogan.getText()).name(name.getText())
+                .computer(Computer.getInstance()).build();
+
+        store.setUuid(connection.saveStore(store));
+        return store;
+    }
+
+    private void handleSubmittedStore(Store store) {
+        if (store.getUuid().isEmpty()) {
+            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("enterprise_data_error"));
+        } else {
+            writeUuid(store.getUuid());
+            writeEnterpriseInfo(store);
+        }
+    }
+
+    private void writeUuid(String uuid) {
+        HostId.writeId(uuid);
+    }
+
+    private void writeEnterpriseInfo(Store store) {
         Properties config = RhoeConfig.get();
         config.replace("enterprise", store.getName());
         config.replace("business_words", store.getAbout());
         RhoeConfig.write(config);
 
     }
+
 }
