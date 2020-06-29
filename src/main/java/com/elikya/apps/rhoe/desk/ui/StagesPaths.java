@@ -38,6 +38,7 @@ public enum StagesPaths {
     SUCCESS_NOTIF("/fxml/SuccessNotif.fxml"),
     TAXES("/fxml/Taxes.fxml"),
     WARNING_NOTIF("/fxml/WarningNotif.fxml"),
+    WELCOME("/fxml/Welcome.fxml"),
     WITHDRAW("/fxml/Withdraw.fxml");
 
     private final String path;

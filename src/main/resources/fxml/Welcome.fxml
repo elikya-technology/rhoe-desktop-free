@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
 <!--
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.elikya.apps.rhoe.desk.controller.WelcomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="524.0" prefWidth="506.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.WelcomeController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" text="Welcome" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="image" fitHeight="290.0" fitWidth="300.0" layoutX="108.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="90.0">
+         <image>
+            <Image url="@../icons/default_image.png" />
+         </image>
+      </ImageView>
+      <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="35.0" layoutY="378.0" prefHeight="41.0" prefWidth="437.0" styleClass="label-text" text="Thank you for choosing Elikya Rhoe, the software that will lead your business toward success." textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="370.0" />
+      <JFXButton fx:id="getStarted" focusTraversable="false" layoutX="198.0" layoutY="455.0" styleClass="btn-get-started" text="Get Started" />
+   </children>
 </AnchorPane>

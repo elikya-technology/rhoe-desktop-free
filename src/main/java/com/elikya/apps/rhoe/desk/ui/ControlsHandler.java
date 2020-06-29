@@ -58,7 +58,7 @@ public class ControlsHandler {
             });
     }
 
-    public static void handlePicture(ImageView imageView) {
+    public static void circleImage(ImageView imageView, int centerX, int centerY, int radius) {
         String path = RhoeConfig.get().getProperty("picture");
         File file = new File(path);
         if (file.exists()) {
@@ -66,7 +66,7 @@ public class ControlsHandler {
                     imageView.getFitHeight(), true, true);
             imageView.setImage(image);
         }
-        imageView.setClip(new Circle(100, 100, 100));
+        imageView.setClip(new Circle(centerX, centerY, radius));
     }
 
     public static Properties getLanguage() {

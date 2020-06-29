@@ -45,7 +45,7 @@ public class MenuController implements Initializable {
         preferences = RhoeConfig.get();
         lang = ControlsHandler.getLanguage();
         setLanguage();
-        ControlsHandler.handlePicture(picture);
+        ControlsHandler.circleImage(picture, 100, 100, 100);
         setProductsEventHandler();
         setSellsEventHandler();
         setAboutEventHandler();

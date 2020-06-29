@@ -83,7 +83,7 @@ public class OptionsController implements Initializable {
         setCloseEventHandler();
         setLanguage();
         spreadOptions();
-        ControlsHandler.handlePicture(picture);
+        ControlsHandler.circleImage(picture, 100, 100, 100);
         ControlsHandler.keepFloatValues(conversionValue);
         addLanguages();
         ControlsHandler.keepIntegerValues(decimalsField);

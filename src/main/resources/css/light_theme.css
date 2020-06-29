@@ -346,6 +346,21 @@
     -jfx-button-type : RAISED;
 }
 
+/* Button Get Started */
+.btn-get-started, .btn-get-started .jfx-rippler {
+    -fx-background-color :#E91E63;
+    -fx-background-radius : 50;
+    -fx-pref-height : 40;
+    -fx-pref-width : 110;
+    -jfx-rippler-fill : white;
+    -fx-text-fill : white;
+    -fx-font-family : Arial;
+    -fx-font-weight : bold;
+}
+.btn-get-started:hover {
+    -jfx-button-type : RAISED;
+}
+
 /* Border-colored buttons */
 .button-bordered, .button-bordered .jfx-rippler {
     -fx-border-color : #455A64;
