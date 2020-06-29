@@ -48,7 +48,6 @@ public class AboutController implements Initializable {
     }
     
     private void setVersion() {
-        Properties configs = RhoeConfig.get();
-        version.setText(configs.getProperty("version"));
+        version.setText(RhoeConfig.get().getProperty("version"));
     }
 }

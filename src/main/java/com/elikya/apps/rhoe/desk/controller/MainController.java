@@ -39,6 +39,7 @@ public class MainController extends Application implements Initializable, Langua
     @FXML private Label title;
     @FXML private Label feedback;
     @FXML private Label faq;
+    @FXML private Label getStarted;
 
     public static final int DRAWER_WIDTH = 315;
 
@@ -52,6 +53,7 @@ public class MainController extends Application implements Initializable, Langua
         setDrawerEventHandler();
         setFeedbackMouseEvent();
         setFaqMouseEvent();
+        setGetStartedMouseHandler();
         ControlsHandler.setDrawer(drawer);
         LanguageObserverImpl.register(this);
         Stages.setMainContainer(container);
@@ -90,7 +92,7 @@ public class MainController extends Application implements Initializable, Langua
                     drawer.open();
                     drawer.setPrefWidth(Screen.getPrimary().getVisualBounds().getWidth());
                 }
-            } catch (IOException exception) {
+            } catch (IOException ignored) {
 
             }
             event.consume();
@@ -109,6 +111,14 @@ public class MainController extends Application implements Initializable, Langua
         faq.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
                 getHostServices().showDocument("http://rhoe.elikya.tech/faq");
+            }
+        });
+    }
+
+    private void setGetStartedMouseHandler() {
+        getStarted.setOnMouseClicked(event -> {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                System.out.println("SHOW GET STARTED ...");
             }
         });
     }
