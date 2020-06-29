@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 @Component
 public class WelcomeController implements Initializable {
 
-    public static final int CIRCLE_VALUES = 125;
+    public static final int CIRCLE_VALUES = 140;
     @FXML private Label title;
     @FXML private JFXButton close;
     @FXML private ImageView image;
