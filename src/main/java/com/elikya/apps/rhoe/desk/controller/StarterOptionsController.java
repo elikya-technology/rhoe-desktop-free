@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Stages;
 import com.elikya.apps.rhoe.desk.ui.StagesPaths;
@@ -47,7 +48,14 @@ public class StarterOptionsController implements Initializable {
     }
 
     private void setNextEventHandler() {
+        disableGetStarted();
         next.setOnAction(Stages::close);
+    }
+
+    private void disableGetStarted() {
+        Properties configs = RhoeConfig.get();
+        configs.replace("show_starter", "false");
+        RhoeConfig.write(configs);
     }
 
     private void setPreviousEventHandler() {

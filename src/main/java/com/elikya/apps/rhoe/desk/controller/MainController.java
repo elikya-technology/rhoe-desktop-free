@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.controller;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.observers.impl.LanguageObserverImpl;
 import com.elikya.apps.rhoe.desk.observers.interfaces.LanguageObserver;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
@@ -12,6 +13,7 @@ import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -59,6 +61,24 @@ public class MainController extends Application implements Initializable, Langua
         Stages.setMainContainer(container);
         updateLanguage();
         Stages.showLargeStage(StagesPaths.SALES);
+        showGetStarted();
+    }
+
+    private void showGetStarted() {
+            Platform.runLater(() -> {
+                boolean showStarers = Boolean.parseBoolean(RhoeConfig.get().getProperty("show_starter"));
+                if (showStarers) {
+                    Platform.runLater(() -> {
+                        try {
+                            Thread.sleep(3000);
+                            Stages.showDialog(StagesPaths.WELCOME);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            });
+
     }
 
     @Override
@@ -66,6 +86,7 @@ public class MainController extends Application implements Initializable, Langua
         lang = ControlsHandler.getLanguage();
         title.setText(lang.getProperty(text));
         feedback.setText(lang.getProperty("feedback"));
+        getStarted.setText(lang.getProperty("get_started"));
     }
 
     public static void setText(String _text) {
