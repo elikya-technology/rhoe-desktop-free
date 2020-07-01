@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" text="Charts" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+            <Label fx:id="title" layoutX="51.0" layoutY="22.0" styleClass="stage-header-text" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
             <JFXButton fx:id="close" cancelButton="true" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="15.0" styleClass="button-hamburger" text=" " AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -53,8 +53,8 @@
             </AnchorPane>
             <AnchorPane layoutY="437.0" prefHeight="60.0" prefWidth="804.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <JFXButton fx:id="next" layoutX="680.0" layoutY="10.0" styleClass="button-filled" text="Next" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0" />
-                  <JFXButton fx:id="previous" layoutX="14.0" layoutY="10.0" styleClass="button-bordered" text="Previous" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="next" layoutX="680.0" layoutY="10.0" styleClass="button-filled" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0" />
+                  <JFXButton fx:id="previous" layoutX="14.0" layoutY="10.0" styleClass="button-bordered" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
                </children>
             </AnchorPane>
          </children>
