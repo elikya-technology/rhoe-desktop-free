@@ -11,7 +11,7 @@
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane prefHeight="470.0" prefWidth="816.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.StarterSalesController">
+<AnchorPane prefHeight="470.0" prefWidth="750.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.StarterSalesController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,9 +40,9 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <ImageView fitHeight="341.0" fitWidth="444.0" layoutX="360.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="329.0" fitWidth="360.0" layoutX="360.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="-11.0">
                      <image>
-                        <Image url="@../icons/starter-sale.jpg" />
+                        <Image url="@../icons/starter-sale.png" />
                      </image>
                   </ImageView>
                </children>

@@ -11,7 +11,7 @@
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane prefHeight="470.0" prefWidth="816.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.StarterOptionsController">
+<AnchorPane prefHeight="470.0" prefWidth="750.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.StarterOptionsController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,9 +42,9 @@
                   </AnchorPane>
                   <AnchorPane layoutX="350.0" layoutY="10.0" prefHeight="326.0" prefWidth="444.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fitHeight="341.0" fitWidth="444.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ImageView fitHeight="354.0" fitWidth="376.0" layoutX="55.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="-20.0">
                            <image>
-                              <Image url="@../icons/starter-options.jpg" />
+                              <Image url="@../icons/starter_options.png" />
                            </image>
                         </ImageView>
                      </children>

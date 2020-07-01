@@ -30,7 +30,7 @@
          <children>
             <ImageView fx:id="image" fitHeight="350.0" fitWidth="340.0" layoutX="87.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="14.0">
                <image>
-                  <Image url="@../icons/starter-business-success.jpg" />
+                  <Image url="@../icons/starter-business-success.png" />
                </image>
             </ImageView>
             <Label fx:id="text" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="38.0" layoutY="306.0" prefHeight="41.0" prefWidth="437.0" styleClass="label-text" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="75.0" />

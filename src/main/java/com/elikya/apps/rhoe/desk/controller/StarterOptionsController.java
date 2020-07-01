@@ -48,7 +48,7 @@ public class StarterOptionsController implements Initializable {
     }
 
     private void setNextEventHandler() {
-        disableGetStarted();
+//        disableGetStarted();
         next.setOnAction(Stages::close);
     }
 
@@ -61,7 +61,7 @@ public class StarterOptionsController implements Initializable {
     private void setPreviousEventHandler() {
         previous.setOnAction(event -> {
             Stages.close(event);
-            Stages.showDialog(StagesPaths.STARTER_OPTIONS);
+            Stages.showDialog(StagesPaths.STARTER_CHART);
         });
     }
 }
