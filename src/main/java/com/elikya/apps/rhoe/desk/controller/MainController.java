@@ -70,7 +70,7 @@ public class MainController extends Application implements Initializable, Langua
                 if (showStarers) {
                     Platform.runLater(() -> {
                         try {
-                            Thread.sleep(3000);
+                            Thread.sleep(5000);
                             Stages.showDialog(StagesPaths.WELCOME);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
