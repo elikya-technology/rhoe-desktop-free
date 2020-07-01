@@ -48,14 +48,17 @@ public class StarterOptionsController implements Initializable {
     }
 
     private void setNextEventHandler() {
-//        disableGetStarted();
+        disableGetStarted();
         next.setOnAction(Stages::close);
     }
 
     private void disableGetStarted() {
         Properties configs = RhoeConfig.get();
-        configs.replace("show_starter", "false");
-        RhoeConfig.write(configs);
+        boolean showStarters = Boolean.parseBoolean(configs.getProperty("show_starter"));
+        if (showStarters) {
+            configs.replace("show_starter", "false");
+            RhoeConfig.write(configs);
+        }
     }
 
     private void setPreviousEventHandler() {
