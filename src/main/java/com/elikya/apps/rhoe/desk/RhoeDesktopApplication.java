@@ -24,7 +24,7 @@ public class RhoeDesktopApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Stages.showDialog(StagesPaths.WELCOME);
+        Stages.showPreloader();
     }
 
     @Override

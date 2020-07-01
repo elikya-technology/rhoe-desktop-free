@@ -31,7 +31,6 @@ public class WelcomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        RhoeConfig.load(); /// !!!!!!!!!!!!!!!!!!! REMOVE THIS AFTER THE TESTS
         setLanguage();
         ControlsHandler.circleImage(image, CIRCLE_VALUES, CIRCLE_VALUES, CIRCLE_VALUES);
         setCloseEventHandler();

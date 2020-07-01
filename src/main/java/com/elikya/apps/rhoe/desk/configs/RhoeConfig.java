@@ -84,6 +84,7 @@ public class RhoeConfig {
         properties.put("decimals", "2");
         properties.put("internal_id", InternalId.get());
         properties.put("temp_file_path", "");
+        properties.put("show_starter", "true");
         write(properties);
     }
 

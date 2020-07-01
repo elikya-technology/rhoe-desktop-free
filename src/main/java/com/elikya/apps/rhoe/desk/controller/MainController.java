@@ -118,7 +118,7 @@ public class MainController extends Application implements Initializable, Langua
     private void setGetStartedMouseHandler() {
         getStarted.setOnMouseClicked(event -> {
             if (event.getButton().equals(MouseButton.PRIMARY)) {
-                System.out.println("SHOW GET STARTED ...");
+                Stages.showDialog(StagesPaths.WELCOME);
             }
         });
     }
