@@ -33,7 +33,7 @@
                <children>
                   <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="248.0" prefWidth="340.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <children>
-                        <Label fx:id="text" alignment="TOP_CENTER" layoutX="57.0" layoutY="127.0" styleClass="label-text" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="text" alignment="TOP_CENTER" layoutX="57.0" layoutY="127.0" styleClass="label-text" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <padding>
                               <Insets top="60.0" />
                            </padding>
