@@ -15,7 +15,6 @@ public enum StagesPaths {
     ERROR_NOTIF("/fxml/ErrorNotif.fxml"),
     ENTERPRISE("/fxml/Enterprise.fxml"),
     EXIT_APPLICATION("/fxml/ExitApplication.fxml"),
-    FEEDBACK("/fxml/Feedback.fxml"),
     INFO_NOTIF("/fxml/InfoNotif.fxml"),
     ITEMS_PRODUCT("/fxml/ItemsProducts.fxml"),
     LANGUAGE("/fxml/Language.fxml"),
