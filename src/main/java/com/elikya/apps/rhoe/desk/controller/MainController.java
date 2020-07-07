@@ -39,7 +39,6 @@ public class MainController extends Application implements Initializable, Langua
     @FXML private JFXButton hamburger;
     @FXML private JFXDrawer drawer;
     @FXML private Label title;
-    @FXML private Label feedback;
     @FXML private Label faq;
     @FXML private Label getStarted;
 
@@ -53,7 +52,6 @@ public class MainController extends Application implements Initializable, Langua
         lang = ControlsHandler.getLanguage();
         setHamburgerListener();
         setDrawerEventHandler();
-        setFeedbackMouseEvent();
         setFaqMouseEvent();
         setGetStartedMouseHandler();
         ControlsHandler.setDrawer(drawer);
@@ -85,7 +83,6 @@ public class MainController extends Application implements Initializable, Langua
     public void updateLanguage() {
         lang = ControlsHandler.getLanguage();
         title.setText(lang.getProperty(text));
-        feedback.setText(lang.getProperty("feedback"));
         getStarted.setText(lang.getProperty("get_started"));
     }
 
@@ -117,14 +114,6 @@ public class MainController extends Application implements Initializable, Langua
 
             }
             event.consume();
-        });
-    }
-
-    private void setFeedbackMouseEvent() {
-        feedback.setOnMouseClicked(event -> {
-            if (event.getButton().equals(MouseButton.PRIMARY)) {
-                Stages.showDialog(StagesPaths.FEEDBACK);
-            }
         });
     }
 
