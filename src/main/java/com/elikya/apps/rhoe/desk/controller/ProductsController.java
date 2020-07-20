@@ -152,6 +152,7 @@ public class ProductsController implements Initializable, LanguageObserver
     public void updateLanguage() {
         setControlsBundle();
         setControlsTooltips();
+        setChartByItems();
     }
 
     @Override
@@ -366,24 +367,28 @@ public class ProductsController implements Initializable, LanguageObserver
     }
     
     private void chartCategories() {
-        String chartingContext = chartBy.getSelectionModel().getSelectedItem();
-        BarChart<String, Number> categoriesChart = chartingContext.equals(lang.getProperty("quantity"))
-                ? ProductsCharter.chartProducts(ChartContext.CATEGORY_QUANTITY, productsTable.getItems()) 
-                : ProductsCharter.chartProducts(ChartContext.CATEGORY_PRICE, productsTable.getItems());
-        catsBox.getChildren().clear();
-        catsBox.getChildren().add(categoriesChart);
-        setChartEventHandler(categoriesChart, ChartState.ENABLED);
+        Optional<String> chartingContext = Optional.ofNullable(chartBy.getSelectionModel().getSelectedItem());
+        chartingContext.ifPresent(it -> {
+            BarChart<String, Number> categoriesChart = it.equals(lang.getProperty("quantity"))
+                    ? ProductsCharter.chartProducts(ChartContext.CATEGORY_QUANTITY, productsTable.getItems())
+                    : ProductsCharter.chartProducts(ChartContext.CATEGORY_PRICE, productsTable.getItems());
+            catsBox.getChildren().clear();
+            catsBox.getChildren().add(categoriesChart);
+            setChartEventHandler(categoriesChart, ChartState.ENABLED);
+        });        
     }
     
     private void chartProducts(ObservableList<Product> products, ChartState context)  {
-        String chartingContext = chartBy.getSelectionModel().getSelectedItem();
-        productsChart = chartingContext.equals(lang.getProperty("quantity"))
-                ? ProductsCharter.chartProducts(ChartContext.PRODUCTS_QUANTITIES, products) 
-                : ProductsCharter.chartProducts(ChartContext.PRODUCTS_PRICE, products);
-        prodsBox.getChildren().clear();
-        prodsBox.getChildren().add(productsChart);
-        setProductsChartEventHandler(context);
-        setChartEventHandler(productsChart, ChartState.DISABLED);
+        Optional<String> chartingContext = Optional.ofNullable(chartBy.getSelectionModel().getSelectedItem());
+        chartingContext.ifPresent(it -> {
+                productsChart = it.equals(lang.getProperty("quantity"))
+                        ? ProductsCharter.chartProducts(ChartContext.PRODUCTS_QUANTITIES, products)
+                        : ProductsCharter.chartProducts(ChartContext.PRODUCTS_PRICE, products);
+                prodsBox.getChildren().clear();
+                prodsBox.getChildren().add(productsChart);
+                setProductsChartEventHandler(context);
+                setChartEventHandler(productsChart, ChartState.DISABLED);
+        });
     }
     
     private void setChartEventHandler(BarChart<String, Number> chart, ChartState context) {

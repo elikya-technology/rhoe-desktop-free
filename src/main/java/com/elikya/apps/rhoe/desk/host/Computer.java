@@ -4,10 +4,12 @@
 
 package com.elikya.apps.rhoe.desk.host;
 
+import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
 
+@Data
 @ToString
 public class Computer implements Serializable {
 

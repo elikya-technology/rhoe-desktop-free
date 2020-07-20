@@ -26,7 +26,7 @@ public class ServerConnection {
     private WebTarget target;
 
     private static ServerConnection serverConnection;
-    private static final String SERVER_URL = "http://localhost:8080/";
+    private static final String SERVER_URL = "http://8.210.167.16:8080/";
 
     private ServerConnection() {
         Client client = ClientBuilder.newClient();

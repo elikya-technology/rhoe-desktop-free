@@ -138,6 +138,7 @@ public class SalesController implements Initializable, LanguageObserver
         setControlsLanguage();
         setControlsTooltips();
         setGroupingItems();
+        setComputeByItems();
         resetDataDisplayed();
         chartSales(salesList);
         chartProducts(salesList, ChartItemState.DISABLED);
@@ -388,10 +389,12 @@ public class SalesController implements Initializable, LanguageObserver
     
     private void setComputeByProperty() {        
         computeBy.valueProperty().addListener((observable, oldValue, newValue) -> {
-            computeContext= newValue.equals(lang.getProperty("price")) 
-                    ? ComputeContext.PRICE : ComputeContext.QUANTITY;
-            chartSales(salesList);
-            chartProducts(salesList, ChartItemState.ENABLED);
+            if (newValue != null) {
+                computeContext= newValue.equals(lang.getProperty("price"))
+                        ? ComputeContext.PRICE : ComputeContext.QUANTITY;
+                chartSales(salesList);
+                chartProducts(salesList, ChartItemState.ENABLED);
+            }
         });
     }
             
