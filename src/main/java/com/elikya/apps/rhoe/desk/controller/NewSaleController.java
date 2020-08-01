@@ -206,7 +206,7 @@ public class NewSaleController implements Initializable, ProductQtyObserver {
         productsTable.setPlaceholder(new Label(lang.getProperty("table_prompt")));
         productsLbl.setText(lang.getProperty("products"));
         fromClientLbl.setText(lang.getProperty("from_client"));
-        receivedFromClient.setPromptText(lang.getProperty("money_received") + " (" + currency + ")");
+        receivedFromClient.setPromptText(lang.getProperty("money_received") + " (" + currency + ")"  + " *");
         restOfOrder.setPromptText(lang.getProperty("rest") + " (" + currency + ")");
     }
 

@@ -142,17 +142,17 @@ public class ProductHandlerController implements Initializable {
         lang = ControlsHandler.getLanguage();
         title.setText(productId != null ? lang.getProperty("edit_product")
                 : lang.getProperty("new_product"));
-        name.setPromptText(lang.getProperty("name"));
+        name.setPromptText(lang.getProperty("name") + " *");
         number.setPromptText(lang.getProperty("product_number"));
-        category.setPromptText(lang.getProperty("category"));
-        provider.setPromptText(lang.getProperty("provider"));
+        category.setPromptText(lang.getProperty("category")  + " *");
+        provider.setPromptText(lang.getProperty("provider") + " *");
         barCode.setPromptText(lang.getProperty("barcode"));
         unitPrice.setPromptText(lang.getProperty("unit_price").concat(" ("
-                + ApplicationCurrency.getDefaultCurrency() + ")"));
+                + ApplicationCurrency.getDefaultCurrency() + ")") + " *");
         save.setText(lang.getProperty("save"));
-        maximumQuantity.setPromptText(lang.getProperty("maximum_quantity"));
-        minimumQuantity.setPromptText(lang.getProperty("minimum_quantity"));
-        realQuantity.setPromptText(lang.getProperty("stock_quantity"));
+        maximumQuantity.setPromptText(lang.getProperty("maximum_quantity") + " *");
+        minimumQuantity.setPromptText(lang.getProperty("minimum_quantity") + " *");
+        realQuantity.setPromptText(lang.getProperty("stock_quantity") + " *");
         descriptionLabel.setText(lang.getProperty("description"));
         stockLabel.setText(lang.getProperty("quantities"));
         modelNumber.setPromptText(lang.getProperty("serial_number"));
