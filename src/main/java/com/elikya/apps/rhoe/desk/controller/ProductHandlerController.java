@@ -345,10 +345,9 @@ public class ProductHandlerController implements Initializable {
     }
 
     private boolean anyRequiredFieldIsEmpty() {
-        return name.getText().isEmpty() || modelNumber.getText().isEmpty()
-                || maximumQuantity.getText().isEmpty() || minimumQuantity.getText().isEmpty()
-                || realQuantity.getText().isEmpty() || unitPrice.getText().isEmpty()
-                || category.getSelectionModel().isEmpty()
+        return name.getText().isEmpty() || maximumQuantity.getText().isEmpty()
+                || minimumQuantity.getText().isEmpty() || realQuantity.getText().isEmpty()
+                || unitPrice.getText().isEmpty() || category.getSelectionModel().isEmpty()
                 || provider.getSelectionModel().isEmpty();
     }
     

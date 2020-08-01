@@ -251,8 +251,8 @@ public class LogsResumeController implements Initializable {
         List<ProductLog> logs = queryLogs(context);
         FilteredList<ProductLog> filteredLogs = filterLogs(logs);
         SortedList<ProductLog> sortedLogs = sortLogs(filteredLogs);
-        logsTable.refresh();
         logsTable.setItems(sortedLogs);
+        logsTable.refresh();
         setSearchFieldTextProperty(filteredLogs);
     }
 

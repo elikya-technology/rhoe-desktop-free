@@ -100,6 +100,7 @@ public class ProductsController implements Initializable, LanguageObserver
         setTableCellsValueFactory();
         intiMethods();
         setTaxedPriceCellFactory();
+        setSerialNumberCellFactory();
     }
     
     @Autowired
@@ -361,6 +362,18 @@ public class ProductsController implements Initializable, LanguageObserver
             protected void updateItem(BigDecimal item, boolean empty) {
                 if (!empty) {
                     setText(NumbersFormatter.getFormattedString(item));
+                }
+            }
+        });
+    }
+
+    private void setSerialNumberCellFactory() {
+        modelNumber.setCellFactory(param -> new TableCell<Product, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                if (!empty) {
+                    if (item == null || item.isEmpty()) setText("-");
+                    else setText(item);
                 }
             }
         });
