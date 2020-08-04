@@ -67,7 +67,7 @@ public class RhoeConfig {
         properties.put("password", "");
         properties.put("website", "http://rhoe.elikya.tech");
         properties.put("address", "");
-        properties.put("version", "1.2.1");
+        properties.put("version", "1.2.3");
         properties.put("currency", "$");
         properties.put("enclosing_layout", "true");
         properties.put("close_sale", "true");
