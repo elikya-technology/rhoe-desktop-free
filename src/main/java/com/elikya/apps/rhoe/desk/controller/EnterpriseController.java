@@ -6,8 +6,6 @@ package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.host.Computer;
-import com.elikya.apps.rhoe.desk.host.HostId;
-import com.elikya.apps.rhoe.desk.host.ServerConnection;
 import com.elikya.apps.rhoe.desk.host.Store;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
 import com.elikya.apps.rhoe.desk.ui.Notifier;
@@ -69,36 +67,13 @@ public class EnterpriseController implements Initializable {
 
     private void setSaveEventHandler() {
         save.setOnAction(event -> {
-            ServerConnection connection = ServerConnection.getInstance();
-            if (connection.isConnected()) {
-                Store store = submitStore(connection);
-                handleSubmittedStore(store);
-
-                Stages.close(event);
-                Stages.showNextStage();
-            } else Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("server_error"));
-        });
-    }
-
-    private Store submitStore(ServerConnection connection) {
-        Store store = Store.builder().about(slogan.getText()).name(name.getText())
-                .computer(Computer.getInstance()).build();
-
-        store.setUuid(connection.saveStore(store));
-        return store;
-    }
-
-    private void handleSubmittedStore(Store store) {
-        if (store.getUuid().isEmpty()) {
-            Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("enterprise_data_error"));
-        } else {
-            writeUuid(store.getUuid());
+            Store store = Store.builder().about(slogan.getText()).name(name.getText())
+                    .computer(Computer.getInstance()).build();
             writeEnterpriseInfo(store);
-        }
-    }
 
-    private void writeUuid(String uuid) {
-        HostId.writeId(uuid);
+            Stages.close(event);
+            Stages.showNextStage();
+        });
     }
 
     private void writeEnterpriseInfo(Store store) {

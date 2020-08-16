@@ -4,7 +4,6 @@
 
 package com.elikya.apps.rhoe.desk.encoding;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class InternalId {
