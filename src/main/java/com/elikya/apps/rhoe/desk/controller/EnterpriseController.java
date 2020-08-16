@@ -5,12 +5,8 @@
 package com.elikya.apps.rhoe.desk.controller;
 
 import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
-import com.elikya.apps.rhoe.desk.host.Computer;
-import com.elikya.apps.rhoe.desk.host.Store;
 import com.elikya.apps.rhoe.desk.ui.ControlsHandler;
-import com.elikya.apps.rhoe.desk.ui.Notifier;
 import com.elikya.apps.rhoe.desk.ui.Stages;
-import com.elikya.apps.rhoe.desk.ui.StagesPaths;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -67,19 +63,16 @@ public class EnterpriseController implements Initializable {
 
     private void setSaveEventHandler() {
         save.setOnAction(event -> {
-            Store store = Store.builder().about(slogan.getText()).name(name.getText())
-                    .computer(Computer.getInstance()).build();
-            writeEnterpriseInfo(store);
-
+            writeEnterpriseInfo();
             Stages.close(event);
             Stages.showNextStage();
         });
     }
 
-    private void writeEnterpriseInfo(Store store) {
+    private void writeEnterpriseInfo() {
         Properties config = RhoeConfig.get();
-        config.replace("enterprise", store.getName());
-        config.replace("business_words", store.getAbout());
+        config.replace("enterprise", name.getText());
+        config.replace("business_words", slogan.getText());
         RhoeConfig.write(config);
 
     }
