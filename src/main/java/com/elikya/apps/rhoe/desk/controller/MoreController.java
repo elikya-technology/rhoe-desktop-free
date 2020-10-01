@@ -253,7 +253,7 @@ public class MoreController implements Initializable, CRUDMaster {
     }
 
     private void setCloseEventHandler() {
-        close.setOnAction((event) -> {
+        close.setOnAction(event -> {
             nullUpdatableCategory();
             nullUpdatableProvider();
             CRUDMasterImpl.unregister(this);
@@ -326,10 +326,8 @@ public class MoreController implements Initializable, CRUDMaster {
     }
 
     private void setNameEventHandler(JFXTextField field, JFXButton button) {
-        field.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.trim().isEmpty()) button.setDisable(true);
-            else button.setDisable(false);
-        });
+        field.textProperty().addListener((observable, oldValue, newValue)
+                -> button.setDisable(newValue.trim().isEmpty()));
     }
 
     private void setCategorySaveEventHandler() {
@@ -636,12 +634,11 @@ public class MoreController implements Initializable, CRUDMaster {
     }
 
     private void disableFormMenuItem(TargetedItem target, MenuItem item) {
-        if (target.equals(TargetedItem.CATEGORY))
-            if (categorySave.isDisabled()) item.setDisable(true);
-            else item.setDisable(false);
-        else
-            if (providerSave.isDisabled()) item.setDisable(true);
-            else item.setDisable(false);
+        if (target.equals(TargetedItem.CATEGORY)) {
+            item.setDisable(categorySave.isDisabled());
+        } else {
+            item.setDisable(providerSave.isDisabled());
+        }
     }
 
     private void fillCategoryForm(Category category) {

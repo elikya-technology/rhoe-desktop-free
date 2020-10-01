@@ -337,15 +337,16 @@ public class ProductStockDetailsController implements Initializable {
     
     private void setDatePickerValueProperty(JFXDatePicker picker) {
         picker.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null)
+            if (newValue != null) {
                 if (PeriodValidator.isValid(from.getValue(), to.getValue())) {
                     searchText.clear();
                     queryLogsFromPeriod();
                     querySaleLigns(PeriodContext.PERIOD);
-                }else {
+                } else {
                     picker.setValue(oldValue);
                     Notifier.notify(StagesPaths.ERROR_NOTIF, lang.getProperty("invalid_period"));
                 }
+            }
         });
     }
     
