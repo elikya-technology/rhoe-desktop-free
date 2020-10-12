@@ -19,7 +19,7 @@
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.TaxesController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.DebtsController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -35,17 +35,8 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <SplitPane fx:id="splitPane" dividerPositions="0.23" prefHeight="360.0" prefWidth="700.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.7" prefHeight="360.0" prefWidth="700.0" style="-fx-border-color: #9e9e9e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <items>
-            <AnchorPane fx:id="formPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
-               <children>
-                  <JFXTextField fx:id="nameField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="215.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="15.0" />
-                  <JFXTextField fx:id="percentField" layoutX="14.0" layoutY="193.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="75.0" />
-                  <JFXTextField fx:id="costField" layoutX="15.0" layoutY="143.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="135.0" />
-                  <JFXTextArea fx:id="descriptionArea" layoutX="15.0" layoutY="67.0" prefHeight="100.0" prefWidth="245.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="195.0" />
-                  <JFXButton fx:id="save" defaultButton="true" disable="true" layoutX="214.0" layoutY="234.0" styleClass="button-filled" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="380.0" />
-               </children>
-            </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
                   <TableView fx:id="taxesTable" layoutX="15.0" prefHeight="416.0" prefWidth="950.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
@@ -83,6 +74,15 @@
                         </JFXButton>
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="formPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <JFXTextField fx:id="nameField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="215.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="15.0" />
+                  <JFXTextField fx:id="percentField" layoutX="14.0" layoutY="193.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="75.0" />
+                  <JFXTextField fx:id="costField" layoutX="15.0" layoutY="143.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="135.0" />
+                  <JFXTextArea fx:id="descriptionArea" layoutX="15.0" layoutY="67.0" prefHeight="100.0" prefWidth="245.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="195.0" />
+                  <JFXButton fx:id="save" defaultButton="true" disable="true" layoutX="214.0" layoutY="234.0" styleClass="button-filled" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="380.0" />
                </children>
             </AnchorPane>
          </items>

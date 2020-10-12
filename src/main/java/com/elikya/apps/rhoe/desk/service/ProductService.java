@@ -6,11 +6,9 @@ package com.elikya.apps.rhoe.desk.service;
 
 import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.entity.Product;
-import com.elikya.apps.rhoe.desk.entity.Tax;
 import com.elikya.apps.rhoe.desk.repository.ProductRepository;
 import com.elikya.apps.rhoe.desk.util.ApplicationCurrency;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,7 +19,6 @@ public class ProductService {
 
     private ProductRepository productRepository;
     private ProductLogService productLogService;
-    private TaxService taxService;
 
     @Autowired
     private void setProductRepository(ProductRepository productRepository) {
@@ -31,11 +28,6 @@ public class ProductService {
     @Autowired
     private void setProductLogService(ProductLogService productLogService) {
         this.productLogService = productLogService;
-    }
-
-    @Autowired
-    private void setTaxService(TaxService taxService) {
-        this.taxService = taxService;
     }
 
     public List<Product> getAll() {

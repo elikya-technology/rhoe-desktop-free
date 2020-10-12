@@ -40,7 +40,7 @@ public enum StagesPaths {
     STARTER_SALES("/fxml/StarterSales.fxml"),
     STARTER_OPTIONS("/fxml/StarterOptions.fxml"),
     SUCCESS_NOTIF("/fxml/SuccessNotif.fxml"),
-    TAXES("/fxml/Taxes.fxml"),
+    TAXES("/fxml/Debts.fxml"),
     WARNING_NOTIF("/fxml/WarningNotif.fxml"),
     WELCOME("/fxml/Welcome.fxml"),
     WITHDRAW("/fxml/Withdraw.fxml");
