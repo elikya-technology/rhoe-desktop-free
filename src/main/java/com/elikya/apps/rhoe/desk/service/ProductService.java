@@ -4,6 +4,7 @@
 
 package com.elikya.apps.rhoe.desk.service;
 
+import com.elikya.apps.rhoe.desk.configs.RhoeConfig;
 import com.elikya.apps.rhoe.desk.entity.Product;
 import com.elikya.apps.rhoe.desk.entity.Tax;
 import com.elikya.apps.rhoe.desk.repository.ProductRepository;
@@ -114,25 +115,16 @@ public class ProductService {
     }
 
     public void includeTax(List<Product> products) {
-        List<Tax> taxes = taxService.getAll();
-        products.forEach(it -> it.setUnitPriceTax(computeTax(it.getUnitPrice(), taxes)));
+        final BigDecimal vat = new BigDecimal(RhoeConfig.get().getProperty("vat"));
+
+        products.forEach(it -> {
+            BigDecimal unitPrice = it.getUnitPrice();
+            BigDecimal taxAmount = unitPrice.multiply(vat).divide(BigDecimal.valueOf(100), 3);
+            it.setUnitPriceTax(unitPrice.add(taxAmount));
+        });
     }
 
-    private BigDecimal computeTax(BigDecimal value, List<Tax> taxes) {
-        BigDecimal result = value;
-        for (Tax tax : taxes) {
-            if (tax.getCost().doubleValue() > 0)
-                result = result.add(tax.getCost());
-            else {
-                BigDecimal percent = value.multiply(tax.getPercent())
-                        .divide(BigDecimal.valueOf(100), 3);
-                result = result.add(percent);
-            }
-        }
-        return result;
-    }
-
-    public Product save(Product product) throws DataIntegrityViolationException {
+    public Product save(Product product) {
         return productRepository.save(product);
     }
 
