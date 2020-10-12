@@ -69,6 +69,8 @@ public class OptionsController implements Initializable {
     @FXML private JFXTextField defaultCurrencyUnit;
     @FXML private JFXTextField secondCurrency;
     @FXML private JFXTextField conversionValue;
+    @FXML private Label taxLabel;
+    @FXML private JFXTextField vat;
     @FXML private VBox advancedCurrencyZone;
 
     private Properties lang;
@@ -85,6 +87,7 @@ public class OptionsController implements Initializable {
         spreadOptions();
         ControlsHandler.circleImage(picture, 100, 100, 100);
         ControlsHandler.keepFloatValues(conversionValue);
+        ControlsHandler.keepFloatValues(vat);
         addLanguages();
         ControlsHandler.keepIntegerValues(decimalsField);
         addMinOnSaleItems();
@@ -129,6 +132,7 @@ public class OptionsController implements Initializable {
         closeSale.setSelected(Boolean.parseBoolean(configs.getProperty("close_sale")));
         secondCurrency.setText(configs.getProperty("second_currency_symbol"));
         conversionValue.setText(configs.getProperty("converted_value"));
+        vat.setText(configs.getProperty("vat"));
         handleAdvancedCurrencyZone();
     }
 
@@ -173,6 +177,8 @@ public class OptionsController implements Initializable {
         defaultCurrencyUnit.setPromptText(lang.getProperty("default_currency_unit"));
         secondCurrency.setPromptText(lang.getProperty("second_currency"));
         conversionValue.setPromptText(lang.getProperty("conversion_value"));
+        taxLabel.setText(lang.getProperty("taxes"));
+        vat.setPromptText(lang.getProperty("vat"));
     }
 
     private void setCloseEventHandler() {
@@ -263,6 +269,7 @@ public class OptionsController implements Initializable {
         configs.replace("language", language.getSelectionModel().getSelectedItem());
         configs.replace("decimals", decimalsField.getText());
         configs.replace("currency", currency.getText());
+        configs.replace("vat", vat.getText());
         configs.replace("close_sale", String.valueOf(closeSale.isSelected()));
         configs.replace("close_product", String.valueOf(closeProduct.isSelected()));
         String value = minOnSale.getSelectionModel().getSelectedItem().trim()

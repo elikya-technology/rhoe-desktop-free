@@ -84,6 +84,7 @@ public class RhoeConfig {
         properties.put("decimals", "2");
         properties.put("internal_id", InternalId.get());
         properties.put("show_starter", "true");
+        properties.put("vat", "0");
         write(properties);
     }
 
