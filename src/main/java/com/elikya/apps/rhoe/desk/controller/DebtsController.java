@@ -64,7 +64,7 @@ public class DebtsController implements Initializable, CRUDMaster {
     private void setLanguage() {
         Properties lang = ControlsHandler.getLanguage();
         title.setText(lang.getProperty("debts"));
+        searchText.setText(lang.getProperty("search"));
     }
-
 
 }

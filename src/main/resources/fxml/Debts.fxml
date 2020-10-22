@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
@@ -13,6 +12,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 
 <!--
@@ -42,8 +42,8 @@
                   <TableView fx:id="debtsTable" layoutX="15.0" prefHeight="416.0" prefWidth="950.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0">
                      <columns>
                         <TableColumn fx:id="saleNumber" prefWidth="75.0" />
-                        <TableColumn fx:id="amount" prefWidth="75.0" />
-                        <TableColumn fx:id="dateTime" prefWidth="75.0" />
+                        <TableColumn fx:id="totalPrice" prefWidth="75.0" />
+                        <TableColumn fx:id="totalPaid" prefWidth="75.0" />
                         <TableColumn fx:id="rest" prefWidth="75.0" />
                      </columns>
                      <columnResizePolicy>
@@ -78,10 +78,14 @@
             </AnchorPane>
             <AnchorPane fx:id="formPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
-                  <JFXTextField fx:id="nameField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="215.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="15.0" />
-                  <JFXTextField fx:id="percentField" layoutX="14.0" layoutY="193.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="75.0" />
-                  <JFXTextField fx:id="costField" layoutX="15.0" layoutY="143.0" prefHeight="26.0" prefWidth="234.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="135.0" />
-                  <JFXTextArea fx:id="descriptionArea" layoutX="15.0" layoutY="67.0" prefHeight="100.0" prefWidth="245.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="195.0" />
+                  <Label fx:id="paymentLabel" styleClass="lbl-charts" text="Label" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="5.0" />
+                  <VBox layoutX="15.0" layoutY="4.0" spacing="40.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="50.0">
+                     <children>
+                        <JFXTextField fx:id="saleNumberFld" prefHeight="26.0" prefWidth="215.0" />
+                        <JFXTextField fx:id="amountFld" prefHeight="26.0" prefWidth="234.0" />
+                        <JFXTextField fx:id="restFld" prefHeight="26.0" prefWidth="234.0" />
+                     </children>
+                  </VBox>
                   <JFXButton fx:id="save" defaultButton="true" disable="true" layoutX="214.0" layoutY="234.0" styleClass="button-filled" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="380.0" />
                </children>
             </AnchorPane>
