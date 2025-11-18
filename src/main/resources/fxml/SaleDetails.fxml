@@ -21,7 +21,7 @@
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.SaleDetailsController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tech.elikya.apps.rhoe.desk.controller.SaleDetailsController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

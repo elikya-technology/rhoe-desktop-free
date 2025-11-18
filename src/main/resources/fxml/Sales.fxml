@@ -22,7 +22,7 @@
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.SalesController">
+<AnchorPane stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tech.elikya.apps.rhoe.desk.controller.SalesController">
    <children>
       <ScrollPane fitToHeight="true" prefHeight="650.0" prefWidth="1360.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
