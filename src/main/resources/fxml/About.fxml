@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +18,7 @@
   ~ Copyright (c) 2020, Elikya Technology.
   -->
 
-<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="450.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.elikya.apps.rhoe.desk.controller.AboutController">
+<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="450.0" stylesheets="@../css/light_theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tech.elikya.apps.rhoe.desk.controller.AboutController">
    <children>
       <AnchorPane prefHeight="60.0" prefWidth="400.0" styleClass="stage-header-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,21 +46,26 @@
                   <Label fx:id="text" alignment="CENTER" prefHeight="110.0" prefWidth="382.0" styleClass="label-text" textAlignment="CENTER" wrapText="true" />
                   <HBox spacing="5.0">
                      <children>
-                        <Label styleClass="label-text" text="Support / Email :" />
-                        <Label styleClass="label-text" text="support@elikya.tech" />
+                        <Label styleClass="label-text" text="hello@elikya.tech">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font></Label>
                      </children>
                   </HBox>
                   <HBox alignment="TOP_RIGHT" spacing="5.0">
                      <children>
-                        <Label styleClass="label-text" text="Version :" />
+                        <Label styleClass="label-text" text="Version :">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font></Label>
                         <Label fx:id="version" styleClass="label-text" />
                      </children>
                   </HBox>
                </children>
             </VBox>
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-25.0" AnchorPane.leftAnchor="15.0">
+            <ImageView fitHeight="110.0" fitWidth="112.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0">
                <image>
-                  <Image url="@../icons/elikya.png" />
+                  <Image url="@../icons/elikya-updated-logo.png" />
                </image>
             </ImageView>
          </children>
