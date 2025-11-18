@@ -4,23 +4,6 @@
 
 package tech.elikya.apps.rhoe.desk.controller;
 
-import tech.elikya.apps.rhoe.desk.chart.ChartsUtils.ComputeContext;
-import tech.elikya.apps.rhoe.desk.chart.SalesCharter;
-import tech.elikya.apps.rhoe.desk.chart.SalesCharter.ChartContext;
-import tech.elikya.apps.rhoe.desk.entity.Sale;
-import tech.elikya.apps.rhoe.desk.exporters.SaleExporter;
-import com.elikya.apps.rhoe.desk.observers.impl.*;
-import tech.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
-import tech.elikya.apps.rhoe.desk.observers.impl.CurrencyObserverImpl;
-import tech.elikya.apps.rhoe.desk.observers.impl.DecimalsObserverImpl;
-import tech.elikya.apps.rhoe.desk.observers.impl.LanguageObserverImpl;
-import tech.elikya.apps.rhoe.desk.observers.interfaces.CurrencyObserver;
-import tech.elikya.apps.rhoe.desk.observers.interfaces.DecimalsObserver;
-import tech.elikya.apps.rhoe.desk.observers.interfaces.LanguageObserver;
-import tech.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
-import tech.elikya.apps.rhoe.desk.service.SaleService;
-import com.elikya.apps.rhoe.desk.ui.*;
-import com.elikya.apps.rhoe.desk.util.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -42,6 +25,20 @@ import javafx.scene.layout.VBox;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tech.elikya.apps.rhoe.desk.chart.ChartsUtils.ComputeContext;
+import tech.elikya.apps.rhoe.desk.chart.SalesCharter;
+import tech.elikya.apps.rhoe.desk.chart.SalesCharter.ChartContext;
+import tech.elikya.apps.rhoe.desk.entity.Sale;
+import tech.elikya.apps.rhoe.desk.exporters.SaleExporter;
+import tech.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
+import tech.elikya.apps.rhoe.desk.observers.impl.CurrencyObserverImpl;
+import tech.elikya.apps.rhoe.desk.observers.impl.DecimalsObserverImpl;
+import tech.elikya.apps.rhoe.desk.observers.impl.LanguageObserverImpl;
+import tech.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
+import tech.elikya.apps.rhoe.desk.observers.interfaces.CurrencyObserver;
+import tech.elikya.apps.rhoe.desk.observers.interfaces.DecimalsObserver;
+import tech.elikya.apps.rhoe.desk.observers.interfaces.LanguageObserver;
+import tech.elikya.apps.rhoe.desk.service.SaleService;
 import tech.elikya.apps.rhoe.desk.ui.*;
 import tech.elikya.apps.rhoe.desk.util.*;
 

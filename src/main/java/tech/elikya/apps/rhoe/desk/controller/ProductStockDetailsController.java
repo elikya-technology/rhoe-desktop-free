@@ -4,17 +4,6 @@
 
 package tech.elikya.apps.rhoe.desk.controller;
 
-import tech.elikya.apps.rhoe.desk.chart.ChartsUtils.ComputeContext;
-import tech.elikya.apps.rhoe.desk.chart.SaleLineCharter;
-import tech.elikya.apps.rhoe.desk.chart.SaleLineCharter.ChartContext;
-import tech.elikya.apps.rhoe.desk.exporters.ProductLogExporter;
-import tech.elikya.apps.rhoe.desk.entity.Product;
-import tech.elikya.apps.rhoe.desk.entity.ProductLog;
-import tech.elikya.apps.rhoe.desk.entity.SaleLine;
-import tech.elikya.apps.rhoe.desk.service.ProductLogService;
-import tech.elikya.apps.rhoe.desk.service.SaleLineService;
-import com.elikya.apps.rhoe.desk.ui.*;
-import com.elikya.apps.rhoe.desk.util.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -32,6 +21,15 @@ import javafx.scene.layout.VBox;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tech.elikya.apps.rhoe.desk.chart.ChartsUtils.ComputeContext;
+import tech.elikya.apps.rhoe.desk.chart.SaleLineCharter;
+import tech.elikya.apps.rhoe.desk.chart.SaleLineCharter.ChartContext;
+import tech.elikya.apps.rhoe.desk.entity.Product;
+import tech.elikya.apps.rhoe.desk.entity.ProductLog;
+import tech.elikya.apps.rhoe.desk.entity.SaleLine;
+import tech.elikya.apps.rhoe.desk.exporters.ProductLogExporter;
+import tech.elikya.apps.rhoe.desk.service.ProductLogService;
+import tech.elikya.apps.rhoe.desk.service.SaleLineService;
 import tech.elikya.apps.rhoe.desk.ui.*;
 import tech.elikya.apps.rhoe.desk.util.*;
 

@@ -4,22 +4,6 @@
 
 package tech.elikya.apps.rhoe.desk.controller;
 
-import tech.elikya.apps.rhoe.desk.configs.NumbersConfig;
-import tech.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
-import tech.elikya.apps.rhoe.desk.entity.Category;
-import tech.elikya.apps.rhoe.desk.entity.Provider;
-import tech.elikya.apps.rhoe.desk.exporters.CategoryExporter;
-import tech.elikya.apps.rhoe.desk.exporters.ProviderExporter;
-import tech.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
-import tech.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
-import tech.elikya.apps.rhoe.desk.service.CategoryService;
-import tech.elikya.apps.rhoe.desk.service.ProviderService;
-import com.elikya.apps.rhoe.desk.ui.*;
-import tech.elikya.apps.rhoe.desk.ui.*;
-import tech.elikya.apps.rhoe.desk.util.ApplicationCurrency;
-import tech.elikya.apps.rhoe.desk.util.InputRegex;
-import tech.elikya.apps.rhoe.desk.util.NumbersFormatter;
-import tech.elikya.apps.rhoe.desk.util.TableViewOperation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -38,6 +22,21 @@ import org.controlsfx.control.textfield.CustomTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
+import tech.elikya.apps.rhoe.desk.configs.NumbersConfig;
+import tech.elikya.apps.rhoe.desk.configs.NumbersConfig.NumberTarget;
+import tech.elikya.apps.rhoe.desk.entity.Category;
+import tech.elikya.apps.rhoe.desk.entity.Provider;
+import tech.elikya.apps.rhoe.desk.exporters.CategoryExporter;
+import tech.elikya.apps.rhoe.desk.exporters.ProviderExporter;
+import tech.elikya.apps.rhoe.desk.observers.impl.CRUDMasterImpl;
+import tech.elikya.apps.rhoe.desk.observers.interfaces.CRUDMaster;
+import tech.elikya.apps.rhoe.desk.service.CategoryService;
+import tech.elikya.apps.rhoe.desk.service.ProviderService;
+import tech.elikya.apps.rhoe.desk.ui.*;
+import tech.elikya.apps.rhoe.desk.util.ApplicationCurrency;
+import tech.elikya.apps.rhoe.desk.util.InputRegex;
+import tech.elikya.apps.rhoe.desk.util.NumbersFormatter;
+import tech.elikya.apps.rhoe.desk.util.TableViewOperation;
 
 import java.math.BigDecimal;
 import java.net.URL;
