@@ -1,4 +1,4 @@
-# 🏪 **Shop Management Application**
+# 🏪 **Elikya Rhoe™**
 ### **Official Product Documentation**
 #### *For Developers & Customers*
 
