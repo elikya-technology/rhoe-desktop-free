@@ -8,7 +8,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.elikya.apps.rhoe.desk'
+group = 'tech.elikya.apps.rhoe.desk'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
